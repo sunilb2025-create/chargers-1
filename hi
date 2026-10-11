@@ -1,0 +1,3050 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101a2c">
+<title>Eco-Aera | Premium Green Home Intelligence</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #101a2c;
+  --navy-soft: #1c2b43;
+  --emerald: #28d9a0;
+  --mint: #a9f5dc;
+  --violet: #9c8cff;
+  --blue: #76b9ff;
+  --rose: #ff9fb8;
+  --amber: #ffd18a;
+  --cyan: #80eaff;
+  --paper: #f4f7fb;
+  --white: #ffffff;
+  --ink: #1a2940;
+  --muted: #718097;
+  --line: #e4eaf2;
+  --glass: rgba(255,255,255,.72);
+  --shadow: 0 18px 55px rgba(24,42,73,.09);
+  --shadow-hover: 0 25px 65px rgba(27,65,105,.17);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 25px;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 5% 5%, rgba(118,185,255,.15), transparent 30%),
+    radial-gradient(ellipse at 95% 15%, rgba(156,140,255,.12), transparent 28%),
+    radial-gradient(ellipse at 50% 100%, rgba(40,217,160,.10), transparent 35%),
+    var(--paper);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .24;
+  background-image:
+    radial-gradient(#a7b7ca .65px, transparent .65px);
+  background-size: 17px 17px;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button, select, input[type="range"], input[type="checkbox"] {
+  cursor: pointer;
+}
+
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(40,217,160,.6);
+  outline-offset: 4px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, .brand-name {
+  font-family: "Manrope", sans-serif;
+  letter-spacing: -.045em;
+}
+
+button {
+  border: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+  transform: none;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+/* PREMIUM SIDEBAR */
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: 258px;
+  padding: 27px 19px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 10% 5%, rgba(40,217,160,.20), transparent 32%),
+    radial-gradient(circle at 100% 70%, rgba(156,140,255,.13), transparent 32%),
+    linear-gradient(155deg, #111b30, #172b40 65%, #102b30);
+  box-shadow: 8px 0 40px rgba(14,28,47,.07);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 3px 8px 30px;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7af4c7, #28d9a0);
+  color: #103b35;
+  font-size: 23px;
+  box-shadow: 0 7px 25px rgba(40,217,160,.25);
+  animation: brandPulse 4s ease-in-out infinite;
+}
+
+.brand-name {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  color: #9eb9c8;
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.sidebar-label {
+  margin: 14px 10px 10px;
+  color: #829ab2;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.nav-list {
+  display: grid;
+  gap: 7px;
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 47px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: #b9c8d8;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    transform .28s cubic-bezier(.2,.8,.2,1),
+    background .28s ease,
+    color .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease;
+}
+
+.nav-icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  font-size: 18px;
+}
+
+.nav-link:hover {
+  transform: translateX(5px);
+  background: rgba(255,255,255,.08);
+  color: white;
+}
+
+.nav-link.active {
+  color: #8cf8d0;
+  border-color: rgba(100,255,200,.2);
+  background: linear-gradient(110deg, rgba(40,217,160,.20), rgba(118,185,255,.08));
+  box-shadow: inset 3px 0 #40e5ad, 0 8px 25px rgba(0,0,0,.08);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.sidebar-tip {
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 19px;
+  background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.025));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.sidebar-tip-icon {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.sidebar-tip h3 {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.sidebar-tip p {
+  color: #a9bfd0;
+  font-size: 11px;
+}
+
+.sidebar-tip .tip-button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 11px;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #8cf8d0, #28d9a0);
+  color: #10382f;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* MAIN */
+
+.main-content {
+  width: calc(100% - 258px);
+  min-width: 0;
+  margin-left: 258px;
+  padding: 29px clamp(18px, 4vw, 48px) 50px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 27px;
+}
+
+.breadcrumb {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.breadcrumb strong {
+  color: var(--ink);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 30px;
+  background: rgba(255,255,255,.72);
+  color: #53776b;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 5px 20px rgba(30,50,80,.04);
+  backdrop-filter: blur(14px);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 0 4px rgba(40,217,160,.15);
+  animation: dotPulse 2.4s ease-in-out infinite;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 15px;
+  background: linear-gradient(135deg, #d4fff0, #dbe8ff);
+  color: #264c54;
+  font-weight: 800;
+  box-shadow: 0 7px 20px rgba(39,67,99,.07);
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(190px, .7fr);
+  gap: 22px;
+  min-height: 270px;
+  overflow: hidden;
+  padding: clamp(25px, 4vw, 42px);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 30px;
+  background:
+    radial-gradient(ellipse at 82% 5%, rgba(128,234,255,.23), transparent 35%),
+    radial-gradient(ellipse at 100% 100%, rgba(156,140,255,.22), transparent 42%),
+    linear-gradient(120deg, #101c31, #203c51 65%, #164a46);
+  color: white;
+  box-shadow: 0 24px 65px rgba(20,43,72,.18);
+  animation: slideUp .75s ease both;
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::before {
+  width: 360px;
+  height: 360px;
+  right: -110px;
+  top: -145px;
+}
+
+.hero::after {
+  width: 260px;
+  height: 260px;
+  right: -60px;
+  top: -95px;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 16px;
+  color: #8cf8d0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 530px;
+  margin-bottom: 12px;
+  font-size: clamp(30px, 4vw, 43px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.hero h1 span {
+  color: #8cf8d0;
+}
+
+.hero p {
+  max-width: 470px;
+  color: #c5d9e6;
+  font-size: 13px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 43px;
+  overflow: hidden;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  font-size: 12px;
+  font-weight: 800;
+  transition:
+    transform .25s cubic-bezier(.2,.8,.2,1),
+    box-shadow .25s ease,
+    background .25s ease,
+    border-color .25s ease,
+    filter .25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.14);
+}
+
+.btn:active {
+  transform: translateY(0) scale(.98);
+}
+
+.btn-primary {
+  background: linear-gradient(120deg, #9bffda, #28d9a0 60%, #5be5bc);
+  color: #103a32;
+  box-shadow: 0 8px 24px rgba(40,217,160,.18);
+}
+
+.btn-primary:hover {
+  filter: saturate(1.15) brightness(1.04);
+  box-shadow: 0 12px 30px rgba(40,217,160,.27);
+}
+
+.btn-glass {
+  border-color: rgba(255,255,255,.23);
+  background: rgba(255,255,255,.08);
+  color: white;
+  backdrop-filter: blur(12px);
+}
+
+.btn-glass:hover {
+  background: rgba(255,255,255,.15);
+}
+
+.hero-illustration {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 160px;
+}
+
+.house-art {
+  display: grid;
+  place-items: center;
+  width: 165px;
+  height: 165px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 45% 55% 49% 51%;
+  background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.035));
+  box-shadow: inset 0 0 35px rgba(255,255,255,.05), 0 15px 45px rgba(0,0,0,.12);
+  font-size: 82px;
+  backdrop-filter: blur(15px);
+  animation: floatHouse 5s ease-in-out infinite;
+}
+
+.floating-label {
+  position: absolute;
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,.19);
+  border-radius: 12px;
+  background: rgba(255,255,255,.11);
+  color: #effff8;
+  font-size: 10px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  backdrop-filter: blur(14px);
+  animation: floatLabel 4s ease-in-out infinite;
+}
+
+.label-top {
+  top: 8px;
+  right: 0;
+}
+
+.label-bottom {
+  bottom: 5px;
+  left: -2px;
+  animation-delay: -1.7s;
+}
+
+/* SECTION HEADERS */
+
+.section {
+  margin-top: 35px;
+  scroll-margin-top: 25px;
+  animation: slideUp .65s ease both;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  font-size: clamp(20px, 2.5vw, 25px);
+  font-weight: 800;
+}
+
+.section-heading p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.section-tag {
+  padding: 7px 11px;
+  border: 1px solid rgba(40,217,160,.17);
+  border-radius: 10px;
+  background: linear-gradient(120deg, #d9fff0, #e2f2ff);
+  color: #267d68;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* METRIC CARDS */
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.metric-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  padding: 19px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.76);
+  box-shadow: 0 7px 28px rgba(27,50,83,.045);
+  backdrop-filter: blur(16px);
+  transition:
+    transform .32s cubic-bezier(.2,.8,.2,1),
+    box-shadow .32s ease,
+    border-color .32s ease;
+}
+
+.metric-card::after {
+  position: absolute;
+  top: -65px;
+  right: -65px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--card-glow, rgba(40,217,160,.13));
+  content: "";
+  filter: blur(1px);
+  transition: transform .45s ease;
+}
+
+.metric-card:nth-child(1) { --card-glow: rgba(40,217,160,.19); }
+.metric-card:nth-child(2) { --card-glow: rgba(156,140,255,.19); }
+.metric-card:nth-child(3) { --card-glow: rgba(255,159,184,.20); }
+.metric-card:nth-child(4) { --card-glow: rgba(118,185,255,.20); }
+
+.metric-card:hover {
+  transform: translateY(-7px) scale(1.012);
+  border-color: rgba(40,217,160,.35);
+  box-shadow: var(--shadow-hover);
+}
+
+.metric-card:hover::after {
+  transform: scale(1.4);
+}
+
+.metric-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 14px;
+  background: var(--icon-bg, linear-gradient(135deg,#d9fff0,#e7fff7));
+  box-shadow: 0 5px 16px rgba(26,51,80,.055);
+  font-size: 21px;
+  transition: transform .3s ease;
+}
+
+.metric-card:nth-child(2) .metric-icon { --icon-bg: linear-gradient(135deg,#e7e0ff,#f2edff); }
+.metric-card:nth-child(3) .metric-icon { --icon-bg: linear-gradient(135deg,#ffe3ec,#fff0f4); }
+.metric-card:nth-child(4) .metric-icon { --icon-bg: linear-gradient(135deg,#dff1ff,#eef8ff); }
+
+.metric-card:hover .metric-icon {
+  transform: rotate(-8deg) scale(1.12);
+}
+
+.metric-label {
+  position: relative;
+  z-index: 1;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.metric-value {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 4px;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(21px, 2.4vw, 29px);
+  font-weight: 800;
+  letter-spacing: -.05em;
+  overflow-wrap: anywhere;
+}
+
+.metric-note {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 5px;
+  color: #6c9588;
+  font-size: 10px;
+}
+
+/* PREMIUM GLASS PANELS */
+
+.panel {
+  padding: clamp(18px, 3vw, 29px);
+  border: 1px solid rgba(255,255,255,.92);
+  border-radius: 25px;
+  background: rgba(255,255,255,.77);
+  box-shadow: 0 10px 35px rgba(25,48,80,.045);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+.panel:hover {
+  border-color: rgba(156,140,255,.23);
+  box-shadow: 0 17px 45px rgba(25,48,80,.07);
+}
+
+.form-block + .form-block {
+  margin-top: 28px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.form-block-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 20px;
+}
+
+.form-block-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 14px;
+  background: linear-gradient(135deg,#d8fff0,#e4efff);
+  box-shadow: 0 5px 17px rgba(35,72,102,.055);
+  font-size: 20px;
+}
+
+.form-block-title h3 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.form-block-title p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 19px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  animation: fadeIn .55s ease both;
+}
+
+.form-field label {
+  color: #3c4c66;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.form-field label span {
+  color: #9ba7b8;
+  font-weight: 500;
+}
+
+.form-field input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-height: 47px;
+  padding: 12px 14px;
+  border: 1px solid rgba(219,228,240,.95);
+  border-radius: 13px;
+  outline: none;
+  background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(246,249,255,.84));
+  color: var(--ink);
+  font-size: 12px;
+  box-shadow: inset 0 1px 2px rgba(30,52,84,.025);
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #a2afbf;
+}
+
+.form-field input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  transform: translateY(-1px);
+  border-color: #a6d9cc;
+  background: #fff;
+}
+
+.form-field input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  transform: translateY(-2px);
+  border-color: var(--emerald);
+  background: #fff;
+  box-shadow:
+    0 0 0 4px rgba(40,217,160,.12),
+    0 9px 23px rgba(40,217,160,.08);
+}
+
+.form-field:nth-child(4n + 1) input,
+.form-field:nth-child(4n + 1) select {
+  --focus-color: rgba(40,217,160,.15);
+}
+
+.form-field:nth-child(4n + 2) input,
+.form-field:nth-child(4n + 2) select {
+  --focus-color: rgba(156,140,255,.15);
+}
+
+.form-field:nth-child(4n + 3) input,
+.form-field:nth-child(4n + 3) select {
+  --focus-color: rgba(118,185,255,.16);
+}
+
+.field-help {
+  color: #8997aa;
+  font-size: 10px;
+}
+
+/* CUSTOM SELECT */
+
+.form-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 42px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235c7e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+}
+
+/* PREMIUM RANGE SLIDERS */
+
+.range-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.range-wrap input,
+input[type="range"] {
+  --range-fill: 50%;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    #28d9a0 0%,
+    #80eaff var(--range-fill),
+    #e4eaf3 var(--range-fill),
+    #e4eaf3 100%
+  );
+  box-shadow: inset 0 1px 3px rgba(20,40,70,.07);
+  cursor: pointer;
+  transition: filter .25s ease;
+}
+
+.range-wrap input:hover,
+input[type="range"]:hover {
+  filter: saturate(1.2);
+}
+
+.range-wrap input::-webkit-slider-thumb,
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 23px;
+  height: 23px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#8cf8d0,#28d9a0);
+  box-shadow: 0 3px 12px rgba(40,170,130,.27), 0 0 0 1px rgba(40,170,130,.18);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.range-wrap input:hover::-webkit-slider-thumb,
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.16);
+  box-shadow: 0 4px 16px rgba(40,170,130,.34), 0 0 0 5px rgba(40,217,160,.12);
+}
+
+.range-wrap input:active::-webkit-slider-thumb,
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.24);
+}
+
+.range-wrap input::-moz-range-thumb,
+input[type="range"]::-moz-range-thumb {
+  width: 17px;
+  height: 17px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#8cf8d0,#28d9a0);
+  box-shadow: 0 3px 12px rgba(40,170,130,.27);
+}
+
+.range-value {
+  min-width: 49px;
+  padding: 6px 8px;
+  border: 1px solid rgba(40,217,160,.14);
+  border-radius: 10px;
+  background: linear-gradient(135deg,#d8fff0,#e2f3ff);
+  color: #217a66;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+  transition: transform .2s ease;
+}
+
+.range-value.updated {
+  animation: valuePop .25s ease;
+}
+
+/* CHECKBOXES */
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #24bb89;
+  transition: transform .2s ease;
+}
+
+input[type="checkbox"]:hover,
+input[type="radio"]:hover {
+  transform: scale(1.12);
+}
+
+/* FORM ACTIONS */
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+  margin-top: 28px;
+}
+
+.form-note {
+  max-width: 330px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.form-actions .btn {
+  min-width: 185px;
+  min-height: 49px;
+}
+
+.form-error {
+  display: none;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid #ffd6df;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#fff0f4,#fff8f6);
+  color: #a03d55;
+  font-size: 12px;
+}
+
+.form-error.visible {
+  display: block;
+  animation: popIn .25s ease both;
+}
+
+/* RESULTS */
+
+.results-section[hidden] {
+  display: none !important;
+}
+
+.results-section.reveal {
+  animation: resultReveal .7s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.results-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 23px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(40,217,160,.13), transparent 38%),
+    linear-gradient(115deg, rgba(224,255,244,.88), rgba(230,239,255,.9));
+  box-shadow: 0 10px 32px rgba(40,85,105,.055);
+}
+
+.score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.score-ring {
+  display: grid;
+  place-items: center;
+  width: 91px;
+  height: 91px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--emerald) 0deg, #e2eee5 0deg);
+  box-shadow: 0 8px 25px rgba(40,217,160,.14);
+  transition: background 1s ease;
+}
+
+.score-ring-inner {
+  display: grid;
+  place-content: center;
+  width: 72px;
+  height: 72px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  text-align: center;
+}
+
+.score-number {
+  font-family: "Manrope", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.score-out-of {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.score-text h3 {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.score-text p {
+  max-width: 400px;
+  color: #62788a;
+  font-size: 11px;
+}
+
+.result-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+  padding: 5px 9px;
+  border: 1px solid rgba(40,217,160,.12);
+  border-radius: 9px;
+  background: linear-gradient(120deg,#d6ffed,#e0f3ff);
+  color: #226c62;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.result-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 22px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 8px 27px rgba(25,48,80,.045);
+  backdrop-filter: blur(15px);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(156,140,255,.27);
+  box-shadow: var(--shadow-hover);
+}
+
+.result-card h3 {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.result-card > p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 235px;
+  margin-top: 15px;
+}
+
+.chart-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--emerald);
+}
+
+.legend-dot.orange {
+  background: #ffb66d;
+}
+
+.energy-summary {
+  display: grid;
+  gap: 17px;
+  margin-top: 22px;
+}
+
+.energy-row {
+  display: grid;
+  gap: 8px;
+}
+
+.energy-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.energy-row-top span:last-child {
+  color: var(--muted);
+}
+
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e9eef6;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg,#28d9a0,#80eaff,#9c8cff);
+  transition: width 1s cubic-bezier(.2,.8,.2,1);
+}
+
+/* RECOMMENDATIONS */
+
+.recommendation-list {
+  display: grid;
+  gap: 13px;
+  margin-top: 17px;
+}
+
+.recommendation {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(223,231,241,.9);
+  border-radius: 15px;
+  background: rgba(255,255,255,.66);
+  transition: transform .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.recommendation:hover {
+  transform: translateX(4px);
+  border-color: #b5e9d9;
+  background: #fff;
+  box-shadow: 0 9px 24px rgba(25,48,80,.055);
+}
+
+.recommendation-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 13px;
+  background: linear-gradient(135deg,#dcfff0,#e6edff);
+  font-size: 19px;
+}
+
+.recommendation:nth-child(3n + 2) .recommendation-icon {
+  background: linear-gradient(135deg,#e7e0ff,#f7e8ff);
+}
+
+.recommendation:nth-child(3n) .recommendation-icon {
+  background: linear-gradient(135deg,#ffe3ec,#fff2d8);
+}
+
+.recommendation h4 {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.recommendation p {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.recommendation-impact {
+  display: inline-block;
+  margin-top: 5px;
+  color: #258a73;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.result-disclaimer {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* FEATURE CARDS */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 22px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 7px 28px rgba(27,50,83,.035);
+  backdrop-filter: blur(15px);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.feature-card::after {
+  position: absolute;
+  right: -45px;
+  bottom: -55px;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: var(--feature-glow, rgba(40,217,160,.12));
+  content: "";
+  transition: transform .4s ease;
+}
+
+.feature-card:nth-child(1) { --feature-glow: rgba(40,217,160,.14); }
+.feature-card:nth-child(2) { --feature-glow: rgba(156,140,255,.15); }
+.feature-card:nth-child(3) { --feature-glow: rgba(118,185,255,.17); }
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(40,217,160,.3);
+  box-shadow: var(--shadow-hover);
+}
+
+.feature-card:hover::after {
+  transform: scale(1.35);
+}
+
+.feature-card-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 15px;
+  background: linear-gradient(135deg,#d9fff0,#e5efff);
+  box-shadow: 0 5px 16px rgba(26,51,80,.05);
+  font-size: 22px;
+  transition: transform .3s ease;
+}
+
+.feature-card:nth-child(2) .feature-card-icon {
+  background: linear-gradient(135deg,#e7e0ff,#f4edff);
+}
+
+.feature-card:nth-child(3) .feature-card-icon {
+  background: linear-gradient(135deg,#ffe4ed,#fff0d8);
+}
+
+.feature-card:hover .feature-card-icon {
+  transform: rotate(-7deg) scale(1.1);
+}
+
+.feature-card h3,
+.feature-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.feature-card h3 {
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 43px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(217,226,237,.9);
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.footer strong {
+  color: #2c4d53;
+}
+
+/* FLOATING CHAT BUTTON */
+
+.chat-launcher {
+  position: fixed;
+  right: 25px;
+  bottom: 24px;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 19px;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 18px;
+  background: linear-gradient(120deg,#9bffda,#28d9a0 60%,#70e6ff);
+  color: #103a32;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 14px 35px rgba(22,128,103,.24);
+  transition: transform .25s ease, box-shadow .25s ease;
+  animation: chatFloat 4s ease-in-out infinite;
+}
+
+.chat-launcher:hover {
+  transform: translateY(-4px) scale(1.025);
+  box-shadow: 0 18px 40px rgba(22,128,103,.3);
+}
+
+.chat-launcher-icon {
+  font-size: 18px;
+}
+
+/* CHAT WINDOW */
+
+.chat-window {
+  position: fixed;
+  right: 25px;
+  bottom: 91px;
+  z-index: 600;
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 30px));
+  max-height: min(560px, calc(100vh - 125px));
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 23px;
+  background: rgba(250,252,255,.92);
+  box-shadow: 0 25px 90px rgba(17,33,58,.25);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  transform-origin: bottom right;
+  animation: chatPop .3s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.chat-window[hidden] {
+  display: none !important;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(128,234,255,.22), transparent 40%),
+    linear-gradient(120deg,#101c31,#203c51);
+  color: white;
+}
+
+.chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.chat-avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 14px;
+  background: rgba(255,255,255,.12);
+  font-size: 21px;
+}
+
+.chat-header h3 {
+  font-size: 13px;
+}
+
+.chat-header p {
+  color: #b8d3d8;
+  font-size: 10px;
+}
+
+.chat-close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 11px;
+  background: rgba(255,255,255,.09);
+  color: white;
+  font-size: 22px;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.chat-close:hover {
+  transform: rotate(90deg);
+  background: rgba(255,255,255,.17);
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding: 17px;
+  min-height: 130px;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(40,217,160,.07), transparent 45%),
+    #f7f9fd;
+}
+
+.chat-message {
+  max-width: 88%;
+  padding: 11px 13px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 15px;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  animation: messageIn .25s ease both;
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  border-top-left-radius: 5px;
+  background: linear-gradient(135deg,#fff,#eefcf7);
+  color: #31465a;
+  box-shadow: 0 4px 12px rgba(30,55,80,.035);
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  border-color: rgba(40,217,160,.18);
+  border-top-right-radius: 5px;
+  background: linear-gradient(135deg,#d9fff0,#dceeff);
+  color: #1b4e4b;
+}
+
+.chat-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 15px 13px;
+  background: #f7f9fd;
+}
+
+.chat-quick-actions button {
+  padding: 7px 9px;
+  border: 1px solid #dce8ed;
+  border-radius: 10px;
+  background: white;
+  color: #456b70;
+  font-size: 10px;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.chat-quick-actions button:hover {
+  transform: translateY(-2px);
+  border-color: #a6e9d5;
+  background: #eafff6;
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 13px;
+  border-top: 1px solid #e6edf4;
+  background: rgba(255,255,255,.9);
+}
+
+.chat-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1px solid #dfe7f0;
+  border-radius: 12px;
+  outline: none;
+  background: #fbfcff;
+  color: var(--ink);
+  font-size: 12px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.chat-form input:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(40,217,160,.12);
+}
+
+.chat-send {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#9bffda,#28d9a0);
+  color: #187967;
+  font-size: 22px;
+  font-weight: 800;
+  transition: transform .2s ease;
+}
+
+.chat-send:hover {
+  transform: translateY(-2px);
+}
+
+/* TOAST POPUP */
+
+.eco-toast {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 1000;
+  max-width: min(360px, calc(100vw - 44px));
+  padding: 14px 18px;
+  border: 1px solid rgba(255,255,255,.75);
+  border-radius: 15px;
+  background: rgba(16, 30, 48, 0.93);
+  color: white;
+  font-size: 12px;
+  box-shadow: 0 15px 45px rgba(17,33,58,.22);
+  backdrop-filter: blur(18px);
+  animation: toastIn .35s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.eco-toast.success {
+  border-left: 4px solid #28d9a0;
+}
+
+.eco-toast.error {
+  border-left: 4px solid #ff9fb8;
+}
+
+/* ANIMATIONS */
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes resultReveal {
+  from { opacity: 0; transform: translateY(28px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(.96) translateY(5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes chatPop {
+  from { opacity: 0; transform: translateY(15px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes messageIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-12px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes floatHouse {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-9px) rotate(2deg); }
+}
+
+@keyframes floatLabel {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes chatFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes brandPulse {
+  0%, 100% { box-shadow: 0 7px 25px rgba(40,217,160,.20); }
+  50% { box-shadow: 0 7px 32px rgba(40,217,160,.38); }
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(40,217,160,.15); }
+  50% { box-shadow: 0 0 0 7px rgba(40,217,160,.055); }
+}
+
+@keyframes valuePop {
+  0% { transform: scale(.92); }
+  70% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 76px;
+    padding: 22px 10px;
+  }
+
+  .brand {
+    justify-content: center;
+    padding: 3px 0 27px;
+  }
+
+  .brand-copy,
+  .sidebar-label,
+  .nav-text,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .nav-link {
+    justify-content: center;
+    padding: 12px 5px;
+  }
+
+  .nav-icon {
+    font-size: 20px;
+  }
+
+  .main-content {
+    width: calc(100% - 76px);
+    margin-left: 76px;
+    padding: 24px 22px 40px;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 170px;
+  }
+
+  .house-art {
+    width: 135px;
+    height: 135px;
+    font-size: 68px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .main-content {
+    padding: 18px 13px 35px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .status-pill {
+    padding: 7px 9px;
+    font-size: 10px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 25px 21px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-illustration {
+    min-height: 150px;
+    margin-top: 3px;
+  }
+
+  .house-art {
+    width: 130px;
+    height: 130px;
+    font-size: 65px;
+  }
+
+  .label-top {
+    right: 5%;
+  }
+
+  .label-bottom {
+    left: 5%;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .metrics-grid {
+    gap: 10px;
+  }
+
+  .metric-card {
+    padding: 15px;
+    border-radius: 19px;
+  }
+
+  .metric-icon {
+    width: 37px;
+    height: 37px;
+    margin-bottom: 11px;
+    font-size: 18px;
+  }
+
+  .metric-value {
+    font-size: 23px;
+  }
+
+  .form-grid,
+  .result-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-banner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .score-wrap {
+    align-items: flex-start;
+  }
+
+  .score-ring {
+    width: 77px;
+    height: 77px;
+  }
+
+  .score-ring-inner {
+    width: 61px;
+    height: 61px;
+  }
+
+  .score-number {
+    font-size: 22px;
+  }
+
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .chat-launcher {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .chat-window {
+    right: 10px;
+    bottom: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+
+</head>
+
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <a class="brand" href="#overview">
+      <span class="brand-icon">✦</span>
+      <span class="brand-copy">
+        <span class="brand-name">Eco-Aera</span>
+        <span class="brand-subtitle">Green intelligence</span>
+      </span>
+    </a>
+
+    <p class="sidebar-label">Workspace</p>
+    <nav>
+      <ul class="nav-list">
+        <li><a class="nav-link active" href="#overview"><span class="nav-icon">⌂</span><span class="nav-text">Overview</span></a></li>
+        <li><a class="nav-link" href="#analyzer"><span class="nav-icon">⌘</span><span class="nav-text">Home analyzer</span></a></li>
+        <li><a class="nav-link" href="#results"><span class="nav-icon">▥</span><span class="nav-text">Energy insights</span></a></li>
+        <li><a class="nav-link" href="#recommendations"><span class="nav-icon">✧</span><span class="nav-text">Recommendations</span></a></li>
+        <li><a class="nav-link" href="#learn"><span class="nav-icon">◈</span><span class="nav-text">Green living</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-tip">
+        <div class="sidebar-tip-icon">🌿</div>
+        <h3>Small steps. Big impact.</h3>
+        <p>Explore practical changes that can make your home more efficient.</p>
+        <button class="tip-button" type="button" data-scroll="#analyzer">Explore my home</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+      <div class="breadcrumb">Workspace / <strong>Green home dashboard</strong></div>
+      <div class="topbar-right">
+        <div class="status-pill"><span class="status-dot"></span> System ready</div>
+        <div class="avatar" aria-label="Eco-Aera user">EA</div>
+      </div>
+    </header>
+
+    <section class="hero" id="overview">
+      <div class="hero-copy">
+        <div class="eyebrow">✦ Smart sustainability dashboard</div>
+        <h1>Make your home <span>greener.</span><br>Live a little smarter.</h1>
+        <p>Discover your home's energy profile, explore improvement opportunities, and build a more sustainable lifestyle with Eco-Aera.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#analyzer">Analyze my home <span>↗</span></a>
+          <a class="btn btn-glass" href="#learn">Explore green living</a>
+        </div>
+      </div>
+
+      <div class="hero-illustration" aria-hidden="true">
+        <div class="house-art">🏡</div>
+        <div class="floating-label label-top">✦ Cleaner energy</div>
+        <div class="floating-label label-bottom">🌱 Better living</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="overviewTitle">
+      <div class="section-heading">
+        <div>
+          <h2 id="overviewTitle">Your home at a glance</h2>
+          <p>Your overview updates after you complete the home analysis.</p>
+        </div>
+        <span class="section-tag">LIVE OVERVIEW</span>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-icon">⚡</div>
+          <span class="metric-label">Monthly energy use</span>
+          <strong class="metric-value" id="overviewEnergy">—</strong>
+          <span class="metric-note">Estimated electricity consumption</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-icon">🏠</div>
+          <span class="metric-label">Property floor area</span>
+          <strong class="metric-value" id="overviewArea">—</strong>
+          <span class="metric-note">Your home's approximate area</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-icon">🌱</div>
+          <span class="metric-label">Green home score</span>
+          <strong class="metric-value" id="overviewScore">—</strong>
+          <span class="metric-note">Calculated from your selections</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-icon">💡</div>
+          <span class="metric-label">Estimated monthly savings</span>
+          <strong class="metric-value" id="overviewSavings">—</strong>
+          <span class="metric-note">Illustrative improvement scenario</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="analyzer">
+      <div class="section-heading">
+        <div>
+          <h2>Green home analyzer</h2>
+          <p>Tell us about your property and its energy-saving features.</p>
+        </div>
+        <span class="section-tag">STEP 01 · HOME PROFILE</span>
+      </div>
+
+      <form class="panel" id="homeForm">
+        <div class="form-block">
+          <div class="form-block-title">
+            <div class="form-block-icon">🏡</div>
+            <div>
+              <h3>Property profile</h3>
+              <p>Basic details about your home and energy usage.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="homeType">Property type</label>
+              <select id="homeType" required>
+                <option value="apartment">Apartment / Flat</option>
+                <option value="independent">Independent house</option>
+                <option value="villa">Villa / Large home</option>
+                <option value="rowhouse">Row house</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="electricityBill">Monthly electricity bill (₹)</label>
+              <input id="electricityBill" type="number" min="0" max="10000000" step="1" placeholder="e.g. 2500" required>
+              <span class="field-help">Enter the approximate monthly amount.</span>
+            </div>
+
+            <div class="form-field">
+              <label for="monthlyKwh">Monthly electricity usage (kWh)</label>
+              <input id="monthlyKwh" type="number" min="1" max="1000000" step="1" placeholder="e.g. 300" required>
+              <span class="field-help">Use the consumption figure on your electricity bill.</span>
+            </div>
+
+            <div class="form-field">
+              <label for="homeArea">Floor area (sq. ft.)</label>
+              <input id="homeArea" type="number" min="50" max="1000000" step="1" placeholder="e.g. 1200" required>
+            </div>
+
+            <div class="form-field">
+              <label for="occupants">Number of occupants</label>
+              <input id="occupants" type="number" min="1" max="100" step="1" value="3" required>
+            </div>
+
+            <div class="form-field">
+              <label for="homeAge">Building age</label>
+              <select id="homeAge" required>
+                <option value="new">Less than 5 years</option>
+                <option value="medium" selected>5–15 years</option>
+                <option value="old">More than 15 years</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-block">
+          <div class="form-block-title">
+            <div class="form-block-icon">⚡</div>
+            <div>
+              <h3>Energy and appliances</h3>
+              <p>Choose the options that best match your home.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="lighting">Lighting type</label>
+              <select id="lighting" required>
+                <option value="led">Mostly LED</option>
+                <option value="mixed" selected>Mixed lighting</option>
+                <option value="traditional">Mostly traditional bulbs</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="appliances">Appliance efficiency</label>
+              <select id="appliances" required>
+                <option value="high">Mostly efficient / high-rated</option>
+                <option value="medium" selected>Mixed efficiency</option>
+                <option value="low">Older / less efficient appliances</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="cooling">Cooling system</label>
+              <select id="cooling" required>
+                <option value="fan">Fans and natural ventilation</option>
+                <option value="efficient" selected>Efficient air conditioning</option>
+                <option value="older">Older air conditioning</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="insulation">Insulation quality</label>
+              <select id="insulation" required>
+                <option value="good">Good insulation</option>
+                <option value="average" selected>Average insulation</option>
+                <option value="poor">Poor / unknown insulation</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="daylight">Natural daylight</label>
+              <select id="daylight" required>
+                <option value="high">High</option>
+                <option value="medium" selected>Moderate</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="thermostat">Temperature management</label>
+              <select id="thermostat" required>
+                <option value="smart">Smart thermostat / controls</option>
+                <option value="manual" selected>Manual settings</option>
+                <option value="none">No consistent management</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-block">
+          <div class="form-block-title">
+            <div class="form-block-icon">🌿</div>
+            <div>
+              <h3>Sustainability features</h3>
+              <p>Select the features currently available in your home.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="solar">Solar energy</label>
+              <select id="solar" required>
+                <option value="yes">Solar installed</option>
+                <option value="planned">Planning solar</option>
+                <option value="no" selected>No solar</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="water">Water-saving fixtures</label>
+              <select id="water" required>
+                <option value="high">Most fixtures are efficient</option>
+                <option value="some" selected>Some efficient fixtures</option>
+                <option value="low">Few / none</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="waste">Waste separation</label>
+              <select id="waste" required>
+                <option value="yes">Regularly separates waste</option>
+                <option value="sometimes" selected>Sometimes</option>
+                <option value="no">Not currently</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="greenery">Home greenery</label>
+              <select id="greenery" required>
+                <option value="high">Many plants / green spaces</option>
+                <option value="some" selected>Some plants</option>
+                <option value="none">Very little greenery</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="transport">Low-carbon transport</label>
+              <select id="transport" required>
+                <option value="often">Often use public transport / cycling</option>
+                <option value="sometimes" selected>Sometimes</option>
+                <option value="rarely">Mostly private vehicle</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="ventilation">Natural ventilation</label>
+              <select id="ventilation" required>
+                <option value="good">Good cross-ventilation</option>
+                <option value="some" selected>Some natural ventilation</option>
+                <option value="poor">Limited natural ventilation</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <p class="form-note">Your results are illustrative estimates based on your answers, not a certified energy audit.</p>
+          <button class="btn btn-primary" type="submit">Analyze my home <span>↗</span></button>
+        </div>
+        <div class="form-error" id="formError" role="alert"></div>
+      </form>
+    </section>
+
+    <section class="section results-section" id="results" hidden>
+      <div class="section-heading">
+        <div>
+          <h2>Your home insights</h2>
+          <p>A personalized overview based on your property profile.</p>
+        </div>
+        <span class="section-tag">STEP 02 · RESULTS</span>
+      </div>
+
+      <div class="results-banner">
+        <div class="score-wrap">
+          <div class="score-ring" id="scoreRing">
+            <div class="score-ring-inner">
+              <span class="score-number" id="greenScore">0</span>
+              <span class="score-out-of">OUT OF 100</span>
+            </div>
+          </div>
+          <div class="score-text">
+            <h3 id="scoreTitle">Your green home score</h3>
+            <p id="scoreDescription">Your score will appear after analysis.</p>
+            <span class="result-status" id="scoreStatus">✦ Ready to improve</span>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="printResults" type="button">Print results ↗</button>
+      </div>
+
+      <div class="result-grid">
+        <article class="result-card">
+          <h3>Monthly energy cost</h3>
+          <p>Current estimate compared with an illustrative efficiency scenario.</p>
+          <div class="chart-wrap">
+            <canvas id="costChart" aria-label="Monthly energy cost comparison"></canvas>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot"></span> Current estimate</span>
+            <span class="legend-item"><span class="legend-dot orange"></span> Improvement scenario</span>
+          </div>
+        </article>
+
+        <article class="result-card">
+          <h3>Efficiency profile</h3>
+          <p>Indicative performance across your home profile.</p>
+          <div class="chart-wrap">
+            <canvas id="efficiencyChart" aria-label="Home efficiency profile"></canvas>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot"></span> Estimated score</span>
+          </div>
+        </article>
+
+        <article class="result-card">
+          <h3>Potential improvements</h3>
+          <p>Estimated opportunities based on your selected options.</p>
+          <div class="energy-summary" id="energySummary"></div>
+        </article>
+
+        <article class="result-card" id="recommendations">
+          <h3>Recommended next steps</h3>
+          <p>Start with practical changes that match your home profile.</p>
+          <div class="recommendation-list" id="recommendationList"></div>
+        </article>
+      </div>
+
+      <p class="result-disclaimer">Estimates are for educational guidance only. Actual savings depend on tariffs, usage patterns, climate, equipment condition, installation costs, and other factors. This tool is not a substitute for a professional energy assessment.</p>
+    </section>
+
+    <section class="section" id="learn">
+      <div class="section-heading">
+        <div>
+          <h2>Make sustainability part of everyday life</h2>
+          <p>Simple ideas that can help reduce waste and improve comfort.</p>
+        </div>
+        <span class="section-tag">GREEN LIVING</span>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-card-icon">☀️</div>
+          <h3>Use daylight well</h3>
+          <p>Open blinds when practical, use task lighting, and choose efficient bulbs for spaces that need artificial light.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card-icon">💧</div>
+          <h3>Save water thoughtfully</h3>
+          <p>Repair leaks, consider efficient fixtures, and use water-saving habits that suit your home.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card-icon">🔋</div>
+          <h3>Use energy wisely</h3>
+          <p>Choose efficient appliances, check their ratings, and compare solar options against your actual energy use.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="currentYear"></span> <strong>Eco-Aera</strong>. Green living, intelligently designed.</p>
+      <p>Designed for a more sustainable future 🌱</p>
+    </footer>
+  </main>
+</div>
+
+<button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Eco-Aera assistant" aria-expanded="false" aria-controls="chatWindow">
+  <span class="chat-launcher-icon">✦</span>
+  <span>Ask Eco-Aera</span>
+</button>
+
+<section class="chat-window" id="chatWindow" aria-label="Eco-Aera chat assistant" hidden>
+  <header class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">🌿</div>
+      <div>
+        <h3>Eco-Aera Assistant</h3>
+        <p>Green home guide · Basic help</p>
+      </div>
+    </div>
+    <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button>
+  </header>
+
+  <div class="chat-messages" id="chatMessages" aria-live="polite" aria-relevant="additions text">
+    <div class="chat-message bot">Hi! 🌱 I'm the Eco-Aera assistant. Ask me about your home assessment, energy efficiency, solar power, or the results.</div>
+  </div>
+
+  <div class="chat-quick-actions">
+    <button type="button" data-question="How does the green home score work?">Green score</button>
+    <button type="button" data-question="How can I reduce my electricity bill?">Save energy</button>
+    <button type="button" data-question="What does solar energy do?">Solar energy</button>
+  </div>
+
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" type="text" maxlength="500" placeholder="Ask a green home question..." aria-label="Your question" required>
+    <button class="chat-send" type="submit" aria-label="Send message">↑</button>
+  </form>
+</section>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+const form = $("homeForm");
+const resultsSection = $("results");
+const errorBox = $("formError");
+$("currentYear").textContent = new Date().getFullYear();
+
+function money(value) {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0
+  }).format(Math.max(0, value));
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function showError(message) {
+  errorBox.textContent = message;
+  errorBox.classList.add("visible");
+}
+
+function clearError() {
+  errorBox.textContent = "";
+  errorBox.classList.remove("visible");
+}
+
+function read(id) {
+  const element = $(id);
+  if (!element) throw new Error("Missing field: " + id);
+  return element.value;
+}
+
+function num(id) {
+  return Number(read(id));
+}
+
+function scoreOption(value, scores) {
+  return scores[value] ?? 0;
+}
+
+function getHomeData() {
+  return {
+    type: read("homeType"),
+    bill: num("electricityBill"),
+    kwh: num("monthlyKwh"),
+    area: num("homeArea"),
+    occupants: num("occupants"),
+    age: read("homeAge"),
+    lighting: read("lighting"),
+    appliances: read("appliances"),
+    cooling: read("cooling"),
+    insulation: read("insulation"),
+    daylight: read("daylight"),
+    thermostat: read("thermostat"),
+    solar: read("solar"),
+    water: read("water"),
+    waste: read("waste"),
+    greenery: read("greenery"),
+    transport: read("transport"),
+    ventilation: read("ventilation")
+  };
+}
+
+function validateData(data) {
+  if (!Number.isFinite(data.bill) || data.bill < 0) {
+    throw new Error("Enter a valid monthly electricity bill.");
+  }
+
+  if (!Number.isFinite(data.kwh) || data.kwh <= 0) {
+    throw new Error("Enter a monthly electricity usage greater than zero.");
+  }
+
+  if (!Number.isFinite(data.area) || data.area < 50) {
+    throw new Error("Enter a valid floor area of at least 50 sq. ft.");
+  }
+
+  if (!Number.isFinite(data.occupants) || data.occupants < 1) {
+    throw new Error("Enter at least one occupant.");
+  }
+}
+
+function calculateAnalysis(data) {
+  const categories = {
+    lighting: scoreOption(data.lighting, {
+      led: 100, mixed: 60, traditional: 25
+    }),
+    appliances: scoreOption(data.appliances, {
+      high: 100, medium: 60, low: 25
+    }),
+    cooling: scoreOption(data.cooling, {
+      fan: 100, efficient: 75, older: 30
+    }),
+    insulation: scoreOption(data.insulation, {
+      good: 100, average: 60, poor: 25
+    }),
+    daylight: scoreOption(data.daylight, {
+      high: 100, medium: 65, low: 30
+    }),
+    thermostat: scoreOption(data.thermostat, {
+      smart: 100, manual: 60, none: 25
+    }),
+    solar: scoreOption(data.solar, {
+      yes: 100, planned: 50, no: 20
+    }),
+    water: scoreOption(data.water, {
+      high: 100, some: 60, low: 25
+    }),
+    waste: scoreOption(data.waste, {
+      yes: 100, sometimes: 55, no: 20
+    }),
+    greenery: scoreOption(data.greenery, {
+      high: 100, some: 60, none: 25
+    }),
+    transport: scoreOption(data.transport, {
+      often: 100, sometimes: 60, rarely: 25
+    }),
+    ventilation: scoreOption(data.ventilation, {
+      good: 100, some: 60, poor: 25
+    })
+  };
+
+  const values = Object.values(categories);
+  const score = Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
+
+  const lightingFactor = { led: .03, mixed: .07, traditional: .12 }[data.lighting];
+  const applianceFactor = { high: .04, medium: .09, low: .16 }[data.appliances];
+  const coolingFactor = { fan: .02, efficient: .08, older: .17 }[data.cooling];
+  const insulationFactor = { good: .025, average: .07, poor: .13 }[data.insulation];
+  const solarFactor = { yes: .20, planned: .04, no: 0 }[data.solar];
+
+  const savingsRate = clamp(
+    lightingFactor + applianceFactor + coolingFactor + insulationFactor + solarFactor,
+    .05,
+    .55
+  );
+
+  const estimatedSavings = Math.round(data.bill * savingsRate);
+  const futureBill = Math.max(0, data.bill - estimatedSavings);
+
+  return {
+    data,
+    categories,
+    score,
+    savingsRate,
+    estimatedSavings,
+    futureBill,
+    annualSavings: estimatedSavings * 12
+  };
+}
+
+function scoreDescription(score) {
+  if (score >= 85) {
+    return {
+      title: "Excellent green foundation",
+      description: "Your selections indicate strong sustainability practices. Focus on maintaining them and identifying further improvements.",
+      status: "✦ Excellent foundation"
+    };
+  }
+
+  if (score >= 70) {
+    return {
+      title: "A strong start",
+      description: "Your home has several positive features. A few targeted upgrades may help improve efficiency further.",
+      status: "✦ Good progress"
+    };
+  }
+
+  if (score >= 50) {
+    return {
+      title: "Room to improve",
+      description: "Your home could benefit from practical energy and resource-saving changes.",
+      status: "✦ Improvement opportunities"
+    };
+  }
+
+  return {
+    title: "Start with small changes",
+    description: "Focus first on simple, affordable efficiency improvements and review your energy use over time.",
+    status: "✦ Start your green journey"
+  };
+}
+
+function updateOverview(result) {
+  $("overviewEnergy").textContent = result.data.kwh.toLocaleString("en-IN") + " kWh";
+  $("overviewArea").textContent = result.data.area.toLocaleString("en-IN") + " sq. ft.";
+  $("overviewScore").textContent = result.score + " / 100";
+  $("overviewSavings").textContent = money(result.estimatedSavings);
+}
+
+function animateScore(score) {
+  const number = $("greenScore");
+  const ring = $("scoreRing");
+  const start = performance.now();
+  const duration = 1100;
+
+  function step(now) {
+    const progress = clamp((now - start) / duration, 0, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    number.textContent = Math.round(score * eased);
+    ring.style.background =
+      `conic-gradient(var(--emerald) ${score * 3.6 * eased}deg, #e2eaf3 0deg)`;
+
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+function drawCostChart(result) {
+  const canvas = $("costChart");
+  const ctx = canvas.getContext("2d");
+  const rect = canvas.getBoundingClientRect();
+  const width = Math.max(280, rect.width);
+  const height = Math.max(200, rect.height);
+  const ratio = window.devicePixelRatio || 1;
+
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.clearRect(0, 0, width, height);
+
+  const left = 48;
+  const right = 15;
+  const top = 20;
+  const bottom = 37;
+  const chartW = width - left - right;
+  const chartH = height - top - bottom;
+  const maxVal = Math.max(result.data.bill, result.futureBill, 1) * 1.2;
+
+  ctx.font = "10px DM Sans, sans-serif";
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+
+  for (let i = 0; i <= 4; i++) {
+    const y = top + chartH - chartH * i / 4;
+    const value = maxVal * i / 4;
+
+    ctx.strokeStyle = "#e9eef5";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(width - right, y);
+    ctx.stroke();
+
+    ctx.fillStyle = "#8492a6";
+    ctx.fillText(
+      value >= 1000 ? "₹" + Math.round(value / 1000) + "k" : "₹" + Math.round(value),
+      left - 7,
+      y
+    );
+  }
+
+  const barWidth = Math.min(55, chartW * .23);
+  const gap = chartW * .18;
+  const x1 = left + chartW / 2 - barWidth - gap / 2;
+  const x2 = left + chartW / 2 + gap / 2;
+
+  const values = [result.data.bill, result.futureBill];
+  const colors = ["#28d9a0", "#ffb66d"];
+  const labels = ["Current", "Improved"];
+
+  values.forEach((value, index) => {
+    const barH = chartH * value / maxVal;
+    const x = index === 0 ? x1 : x2;
+    const y = top + chartH - barH;
+    const gradient = ctx.createLinearGradient(0, y, 0, y + barH);
+    gradient.addColorStop(0, colors[index]);
+    gradient.addColorStop(1, index === 0 ? "#78eed0" : "#ffe0aa");
+
+    ctx.fillStyle = gradient;
+    roundedRect(ctx, x, y, barWidth, Math.max(2, barH), 8);
+    ctx.fill();
+
+    ctx.fillStyle = "#31465d";
+    ctx.font = "bold 10px DM Sans, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(money(value), x + barWidth / 2, Math.max(10, y - 9));
+
+    ctx.fillStyle = "#718097";
+    ctx.font = "10px DM Sans, sans-serif";
+    ctx.fillText(labels[index], x + barWidth / 2, height - 15);
+  });
+}
+
+function roundedRect(ctx, x, y, width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + width - r, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+  ctx.lineTo(x + width, y + height - r);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+  ctx.lineTo(x + r, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function drawEfficiencyChart(result) {
+  const canvas = $("efficiencyChart");
+  const ctx = canvas.getContext("2d");
+  const rect = canvas.getBoundingClientRect();
+  const width = Math.max(280, rect.width);
+  const height = Math.max(200, rect.height);
+  const ratio = window.devicePixelRatio || 1;
+
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.clearRect(0, 0, width, height);
+
+  const entries = [
+    ["Lighting", result.categories.lighting, "#28d9a0"],
+    ["Appliances", result.categories.appliances, "#9c8cff"],
+    ["Cooling", result.categories.cooling, "#76b9ff"],
+    ["Insulation", result.categories.insulation, "#ff9fb8"],
+    ["Renewables", result.categories.solar, "#ffbf72"]
+  ];
+
+  const left = 78;
+  const right = 31;
+  const top = 15;
+  const rowH = 37;
+  const barH = 9;
+  const available = width - left - right;
+
+  entries.forEach((entry, index) => {
+    const y = top + index * rowH;
+
+    ctx.fillStyle = "#6f7f94";
+    ctx.font = "10px DM Sans, sans-serif";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    ctx.fillText(entry[0], left - 10, y + barH / 2);
+
+    ctx.fillStyle = "#eaf0f6";
+    roundedRect(ctx, left, y, available, barH, 5);
+    ctx.fill();
+
+    const fillW = available * entry[1] / 100;
+    const gradient = ctx.createLinearGradient(left, 0, left + available, 0);
+    gradient.addColorStop(0, entry[2]);
+    gradient.addColorStop(1, "#b9e8ff");
+
+    ctx.fillStyle = gradient;
+    roundedRect(ctx, left, y, Math.max(1, fillW), barH, 5);
+    ctx.fill();
+
+    ctx.fillStyle = "#52647b";
+    ctx.font = "bold 10px DM Sans, sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText(String(entry[1]), left + available + 7, y + barH / 2);
+  });
+}
+
+function createProgressRows(result) {
+  const container = $("energySummary");
+  container.replaceChildren();
+
+  const items = [
+    ["Lighting efficiency", result.categories.lighting],
+    ["Appliance efficiency", result.categories.appliances],
+    ["Cooling efficiency", result.categories.cooling],
+    ["Building envelope", result.categories.insulation],
+    ["Sustainability features", Math.round(
+      (result.categories.solar + result.categories.water +
+      result.categories.waste + result.categories.greenery) / 4
+    )]
+  ];
+
+  items.forEach(([label, value]) => {
+    const row = document.createElement("div");
+    row.className = "energy-row";
+
+    const top = document.createElement("div");
+    top.className = "energy-row-top";
+
+    const title = document.createElement("span");
+    title.textContent = label;
+
+    const amount = document.createElement("span");
+    amount.textContent = value + "%";
+
+    top.append(title, amount);
+
+    const track = document.createElement("div");
+    track.className = "progress-track";
+
+    const fill = document.createElement("div");
+    fill.className = "progress-fill";
+    fill.style.width = "0%";
+
+    track.append(fill);
+    row.append(top, track);
+    container.append(row);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        fill.style.width = value + "%";
+      });
+    });
+  });
+}
+
+function buildRecommendations(result) {
+  const { data, categories } = result;
+  const list = $("recommendationList");
+  list.replaceChildren();
+
+  const suggestions = [];
+
+  if (data.lighting !== "led") {
+    suggestions.push({
+      icon: "💡",
+      title: "Upgrade to LED lighting",
+      text: "Replace frequently used traditional bulbs with efficient LED lighting.",
+      impact: "Low-cost starting point"
+    });
+  }
+
+  if (data.appliances !== "high") {
+    suggestions.push({
+      icon: "🔌",
+      title: "Review appliance efficiency",
+      text: "Check energy labels when replacing appliances and avoid unnecessary standby use.",
+      impact: "Potential ongoing savings"
+    });
+  }
+
+  if (data.cooling === "older") {
+    suggestions.push({
+      icon: "❄️",
+      title: "Improve cooling efficiency",
+      text: "Clean filters, maintain equipment, and use comfortable temperature settings.",
+      impact: "Improve comfort and efficiency"
+    });
+  }
+
+  if (data.insulation !== "good") {
+    suggestions.push({
+      icon: "🏠",
+      title: "Reduce unwanted heat gain",
+      text: "Consider shading, sealing gaps, curtains, or insulation suitable for your climate.",
+      impact: "Potential cooling benefits"
+    });
+  }
+
+  if (data.solar !== "yes") {
+    suggestions.push({
+      icon: "☀️",
+      title: "Explore solar feasibility",
+      text: "Compare roof suitability, installation costs, local incentives, and actual energy use.",
+      impact: "Requires a site-specific assessment"
+    });
+  }
+
+  if (data.water !== "high") {
+    suggestions.push({
+      icon: "💧",
+      title: "Use water more efficiently",
+      text: "Repair leaks and consider efficient taps, showerheads, and other suitable fixtures.",
+      impact: "Reduce water waste"
+    });
+  }
+
+  if (data.ventilation !== "good") {
+    suggestions.push({
+      icon: "🌬️",
+      title: "Improve natural ventilation",
+      text: "Where safe and practical, use cross-ventilation and shading to reduce heat buildup.",
+      impact: "May reduce cooling needs"
+    });
+  }
+
+  if (data.waste !== "yes") {
+    suggestions.push({
+      icon: "♻️",
+      title: "Separate household waste",
+      text: "Set up simple bins for recyclable, organic, and general waste based on local rules.",
+      impact: "Build a sustainable habit"
+    });
+  }
+
+  if (data.greenery === "none") {
+    suggestions.push({
+      icon: "🌿",
+      title: "Add suitable greenery",
+      text: "Try locally suitable plants and choose species that match your available light and water.",
+      impact: "Support a pleasant living space"
+    });
+  }
+
+  if (suggestions.length === 0) {
+    suggestions.push({
+      icon: "✨",
+      title: "Maintain your current habits",
+      text: "Review energy bills periodically and look for improvements that make sense for your home.",
+      impact: "Keep tracking progress"
+    });
+  }
+
+  suggestions.slice(0, 6).forEach(item => {
+    const article = document.createElement("article");
+    article.className = "recommendation";
+
+    const icon = document.createElement("div");
+    icon.className = "recommendation-icon";
+    icon.textContent = item.icon;
+
+    const content = document.createElement("div");
+    const title = document.createElement("h4");
+    title.textContent = item.title;
+
+    const description = document.createElement("p");
+    description.textContent = item.text;
+
+    const impact = document.createElement("span");
+    impact.className = "recommendation-impact";
+    impact.textContent = item.impact;
+
+    content.append(title, description, impact);
+    article.append(icon, content);
+    list.append(article);
+  });
+}
+
+function showResults(result) {
+  const description = scoreDescription(result.score);
+
+  $("scoreTitle").textContent = description.title;
+  $("scoreDescription").textContent = description.description;
+  $("scoreStatus").textContent = description.status;
+
+  updateOverview(result);
+  animateScore(result.score);
+  createProgressRows(result);
+  buildRecommendations(result);
+
+  resultsSection.hidden = false;
+  resultsSection.classList.remove("reveal");
+  void resultsSection.offsetWidth;
+  resultsSection.classList.add("reveal");
+
+  requestAnimationFrame(() => {
+    drawCostChart(result);
+    drawEfficiencyChart(result);
+  });
+}
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  clearError();
+
+  if (!form.reportValidity()) return;
+
+  try {
+    const data = getHomeData();
+    validateData(data);
+    const result = calculateAnalysis(data);
+
+    showResults(result);
+
+    setTimeout(() => {
+      resultsSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }, 100);
+
+    showToast("Your home analysis is ready.", "success");
+  } catch (error) {
+    showError(error.message || "Something went wrong. Please check your entries.");
+  }
+});
+
+/* RANGE TRACK AND VALUE LABELS */
+
+function updateRange(slider) {
+  const min = Number(slider.min || 0);
+  const max = Number(slider.max || 100);
+  const value = Number(slider.value);
+  const percent = max > min ? ((value - min) / (max - min)) * 100 : 0;
+
+  slider.style.setProperty("--range-fill", percent + "%");
+
+  const output = slider.closest(".range-wrap")?.querySelector(".range-value");
+  if (output) {
+    output.textContent = slider.value;
+    output.classList.remove("updated");
+    void output.offsetWidth;
+    output.classList.add("updated");
+  }
+}
+
+document.querySelectorAll('input[type="range"]').forEach(slider => {
+  slider.addEventListener("input", () => updateRange(slider));
+  updateRange(slider);
+});
+
+/* NAVIGATION */
+
+document.querySelectorAll(".nav-link").forEach(link => {
+  link.addEventListener("click", () => {
+    document.querySelectorAll(".nav-link").forEach(item => item.classList.remove("active"));
+    link.classList.add("active");
+  });
+});
+
+document.querySelectorAll("[data-scroll]").forEach(button => {
+  button.addEventListener("click", () => {
+    const target = document.querySelector(button.dataset.scroll);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+/* TOASTS */
+
+let toastTimer;
+
+function showToast(message, type = "success") {
+  document.querySelector(".eco-toast")?.remove();
+  clearTimeout(toastTimer);
+
+  const toast = document.createElement("div");
+  toast.className = "eco-toast " + type;
+  toast.setAttribute("role", "status");
+  toast.textContent = message;
+  document.body.append(toast);
+
+  toastTimer = setTimeout(() => {
+    toast.style.transition = "opacity .25s ease, transform .25s ease";
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(-8px)";
+    setTimeout(() => toast.remove(), 280);
+  }, 3000);
+}
+
+/* CHAT WINDOW */
+
+const chatLauncher = $("chatLauncher");
+const chatWindow = $("chatWindow");
+const chatClose = $("chatClose");
+const chatMessages = $("chatMessages");
+const chatForm = $("chatForm");
+const chatInput = $("chatInput");
+
+function openChat() {
+  chatWindow.hidden = false;
+  chatLauncher.setAttribute("aria-expanded", "true");
+  setTimeout(() => chatInput.focus(), 50);
+}
+
+function closeChat() {
+  chatWindow.hidden = true;
+  chatLauncher.setAttribute("aria-expanded", "false");
+  chatLauncher.focus();
+}
+
+chatLauncher.addEventListener("click", () => {
+  if (chatWindow.hidden) openChat();
+  else closeChat();
+});
+
+chatClose.addEventListener("click", closeChat);
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && !chatWindow.hidden) closeChat();
+});
+
+function addChatMessage(text, type) {
+  const message = document.createElement("div");
+  message.className = "chat-message " + type;
+  message.textContent = text;
+  chatMessages.append(message);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function getChatReply(question) {
+  const q = question.toLowerCase();
+
+  if (q.includes("score") || q.includes("green home")) {
+    return "Your green home score is an illustrative score based on the choices in your assessment. It is designed to highlight opportunities, not certify a building.";
+  }
+
+  if (q.includes("bill") || q.includes("electricity") || q.includes("save energy")) {
+    return "Start with efficient lighting, sensible cooling settings, regular appliance maintenance, and switching off equipment when it is not needed. Track your bills to see which changes help.";
+  }
+
+  if (q.includes("solar")) {
+    return "Solar suitability depends on roof space, shade, local sunlight, installation cost, electricity tariffs, and available incentives. Compare quotations and expected generation before deciding.";
+  }
+
+  if (q.includes("water")) {
+    return "Repair leaks, choose suitable efficient fixtures, and use water only when needed. Local climate and water availability should guide larger changes.";
+  }
+
+  if (q.includes("ventilation") || q.includes("cooling") || q.includes("hot")) {
+    return "Where safe and practical, cross-ventilation, shading, clean cooling filters, and well-managed temperature settings can improve comfort and may reduce energy use.";
+  }
+
+  if (q.includes("waste") || q.includes("recycl")) {
+    return "Separate waste according to your local collection rules. Keep recyclables clean, and compost suitable food scraps where facilities and conditions allow.";
+  }
+
+  return "A good place to start is your home assessment. I can offer general guidance about energy efficiency, solar power, water conservation, waste reduction, and sustainable home habits.";
+}
+
+function sendChatQuestion(question) {
+  const cleaned = question.trim();
+  if (!cleaned) return;
+
+  addChatMessage(cleaned, "user");
+  chatInput.value = "";
+
+  const typing = document.createElement("div");
+  typing.className = "chat-message bot";
+  typing.textContent = "Thinking…";
+  typing.id = "chatTyping";
+  chatMessages.append(typing);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  setTimeout(() => {
+    $("chatTyping")?.remove();
+    addChatMessage(getChatReply(cleaned), "bot");
+  }, 450);
+}
+
+chatForm.addEventListener("submit", event => {
+  event.preventDefault();
+  sendChatQuestion(chatInput.value);
+});
+
+document.querySelectorAll("[data-question]").forEach(button => {
+  button.addEventListener("click", () => sendChatQuestion(button.dataset.question));
+});
+
+/* PRINT */
+
+$("printResults").addEventListener("click", () => window.print());
+
+/* REDRAW CHARTS AFTER RESIZE */
+
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+
+  resizeTimer = setTimeout(() => {
+    if (resultsSection.hidden) return;
+
+    try {
+      const result = calculateAnalysis(getHomeData());
+      drawCostChart(result);
+      drawEfficiencyChart(result);
+    } catch (error) {
+      console.warn("Chart refresh skipped:", error.message);
+    }
+  }, 150);
+});
+</script>
+</body>
+</html>

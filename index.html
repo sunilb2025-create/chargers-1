@@ -1,0 +1,2726 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102c25">
+<meta name="description" content="Eco-Aera — analyze home energy efficiency and discover sustainable improvements.">
+<title>Eco-Aera | Green Home Intelligence</title>
+
+<!-- Unique typography -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --forest: #143b2f;
+  --forest-dark: #0b251d;
+  --green: #43c68b;
+  --green-light: #dff8eb;
+  --mint: #effaf4;
+  --cream: #f8faf6;
+  --white: #ffffff;
+  --ink: #182b25;
+  --muted: #7b8981;
+  --line: #e5ece6;
+  --orange: #f4a261;
+  --red: #e76f51;
+  --shadow: 0 16px 45px rgba(23, 56, 41, .07);
+  --radius: 22px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(67, 198, 139, .6);
+  outline-offset: 3px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, .brand-name {
+  font-family: "Manrope", sans-serif;
+  letter-spacing: -.045em;
+}
+
+button, .nav-link, .metric-card, .feature-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 254px;
+  flex-shrink: 0;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 27px 19px;
+  color: white;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(67,198,139,.17), transparent 35%),
+    var(--forest-dark);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 3px 8px 30px;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 15px;
+  background: var(--green);
+  color: var(--forest-dark);
+  font-size: 23px;
+  box-shadow: 0 6px 20px rgba(67,198,139,.18);
+}
+
+.brand-name {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  color: #a8c8b7;
+  font-size: 10px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.sidebar-label {
+  margin: 14px 10px 10px;
+  color: #7e9d8d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.nav-list {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  color: #b7cbbf;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.nav-icon {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  font-size: 18px;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,.07);
+  color: white;
+  transform: translateX(3px);
+}
+
+.nav-link.active {
+  background: rgba(67,198,139,.15);
+  border-color: rgba(67,198,139,.16);
+  color: #70e6aa;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.sidebar-tip {
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  background: rgba(255,255,255,.045);
+}
+
+.sidebar-tip-icon {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.sidebar-tip h3 {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.sidebar-tip p {
+  color: #a6beb0;
+  font-size: 11px;
+}
+
+.sidebar-tip .tip-button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--green);
+  color: var(--forest-dark);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* MAIN AREA */
+
+.main-content {
+  width: calc(100% - 254px);
+  min-width: 0;
+  margin-left: 254px;
+  padding: 29px clamp(18px, 4vw, 48px) 50px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 27px;
+}
+
+.breadcrumb {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.breadcrumb strong {
+  color: var(--ink);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: white;
+  color: #527363;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px #e7f9ef;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  border-radius: 14px;
+  background: #dff5e7;
+  color: var(--forest);
+  font-weight: 800;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(190px, .7fr);
+  gap: 22px;
+  min-height: 264px;
+  overflow: hidden;
+  padding: clamp(25px, 4vw, 42px);
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(94,226,153,.25), transparent 40%),
+    linear-gradient(120deg, #12392c 0%, #1d5941 100%);
+  color: white;
+  animation: slideUp .7s ease both;
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::before {
+  width: 340px;
+  height: 340px;
+  right: -110px;
+  top: -145px;
+}
+
+.hero::after {
+  width: 240px;
+  height: 240px;
+  right: -60px;
+  top: -95px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 16px;
+  color: #8de5b3;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 530px;
+  margin-bottom: 12px;
+  font-size: clamp(30px, 4vw, 43px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.hero h1 span {
+  color: #8de5b3;
+}
+
+.hero p {
+  max-width: 470px;
+  color: #c5ddd0;
+  font-size: 13px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 12px 17px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+
+.btn-primary {
+  background: var(--green);
+  color: var(--forest-dark);
+}
+
+.btn-primary:hover {
+  background: #67dda4;
+}
+
+.btn-glass {
+  border-color: rgba(255,255,255,.2);
+  background: rgba(255,255,255,.07);
+  color: white;
+}
+
+.hero-illustration {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 160px;
+}
+
+.house-art {
+  display: grid;
+  place-items: center;
+  width: 165px;
+  height: 165px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 45% 55% 49% 51%;
+  background: rgba(255,255,255,.065);
+  font-size: 82px;
+  animation: floatHouse 5s ease-in-out infinite;
+}
+
+.floating-label {
+  position: absolute;
+  padding: 9px 12px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 11px;
+  background: rgba(255,255,255,.13);
+  color: #effff5;
+  font-size: 10px;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+}
+
+.label-top {
+  top: 8px;
+  right: 0;
+}
+
+.label-bottom {
+  bottom: 5px;
+  left: -2px;
+}
+
+/* SECTION HEADERS */
+
+.section {
+  margin-top: 35px;
+  scroll-margin-top: 25px;
+  animation: slideUp .65s ease both;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  font-size: clamp(20px, 2.5vw, 25px);
+  font-weight: 800;
+}
+
+.section-heading p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.section-tag {
+  padding: 7px 11px;
+  border-radius: 9px;
+  background: var(--green-light);
+  color: #24774e;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* OVERVIEW CARDS */
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.metric-card {
+  position: relative;
+  min-width: 0;
+  padding: 19px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: 0 4px 16px rgba(23,56,41,.02);
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.metric-card:hover,
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: #a6e8c3;
+  box-shadow: var(--shadow);
+}
+
+.metric-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 16px;
+  border-radius: 13px;
+  background: var(--mint);
+  font-size: 21px;
+  transition: transform .3s ease, background .3s ease;
+}
+
+.metric-card:hover .metric-icon {
+  transform: rotate(-7deg) scale(1.1);
+  background: var(--green-light);
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.metric-value {
+  display: block;
+  margin-top: 4px;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(21px, 2.4vw, 29px);
+  font-weight: 800;
+  letter-spacing: -.05em;
+  overflow-wrap: anywhere;
+}
+
+.metric-note {
+  display: block;
+  margin-top: 5px;
+  color: #6c9a7c;
+  font-size: 10px;
+}
+
+/* FORM */
+
+.panel {
+  padding: clamp(18px, 3vw, 29px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 5px 24px rgba(23,56,41,.025);
+}
+
+.form-block + .form-block {
+  margin-top: 28px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.form-block-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 20px;
+}
+
+.form-block-icon {
+  display: grid;
+  place-items: center;
+  width: 41px;
+  height: 41px;
+  border-radius: 13px;
+  background: var(--mint);
+  font-size: 20px;
+}
+
+.form-block-title h3 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.form-block-title p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 19px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.form-field label {
+  color: #3c5147;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.form-field label span {
+  color: #9ba79f;
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 13px;
+  border: 1px solid #e1e9e2;
+  border-radius: 11px;
+  outline: none;
+  background: #fcfdfb;
+  color: var(--ink);
+  font-size: 12px;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.form-field input:hover,
+.form-field select:hover {
+  border-color: #b5d8c2;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--green);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(67,198,139,.1);
+}
+
+.field-help {
+  color: #8a978e;
+  font-size: 10px;
+}
+
+.range-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.range-wrap input {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  accent-color: #35b879;
+}
+
+.range-value {
+  min-width: 49px;
+  padding: 5px 7px;
+  border-radius: 8px;
+  background: var(--mint);
+  color: #217448;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+  margin-top: 28px;
+}
+
+.form-note {
+  max-width: 330px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.form-actions .btn {
+  min-width: 185px;
+  min-height: 49px;
+}
+
+.form-error {
+  display: none;
+  margin-top: 14px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  background: #fff0ed;
+  color: #a03d2a;
+  font-size: 12px;
+}
+
+.form-error.visible {
+  display: block;
+  animation: popIn .25s ease both;
+}
+
+/* RESULTS */
+
+.results-section[hidden] {
+  display: none !important;
+}
+
+.results-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px;
+  border: 1px solid #ccebd7;
+  border-radius: 19px;
+  background: linear-gradient(110deg, #ecfbf2, #f9fdf9);
+}
+
+.score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.score-ring {
+  display: grid;
+  place-items: center;
+  width: 91px;
+  height: 91px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--green) 0deg, #e2eee5 0deg);
+  transition: background 1s ease;
+}
+
+.score-ring-inner {
+  display: grid;
+  place-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: white;
+  text-align: center;
+}
+
+.score-number {
+  font-family: "Manrope", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.score-out-of {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.score-text h3 {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.score-text p {
+  max-width: 400px;
+  color: #62786a;
+  font-size: 11px;
+}
+
+.result-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: #d8f5e3;
+  color: #226c44;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.result-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: white;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.result-card h3 {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.result-card > p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 235px;
+  margin-top: 15px;
+}
+
+.chart-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--green);
+}
+
+.legend-dot.orange {
+  background: var(--orange);
+}
+
+.energy-summary {
+  display: grid;
+  gap: 17px;
+  margin-top: 22px;
+}
+
+.energy-row {
+  display: grid;
+  gap: 8px;
+}
+
+.energy-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.energy-row-top span:last-child {
+  color: var(--muted);
+}
+
+.progress-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #edf2ed;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #39b97a, #8ae2b0);
+  transition: width 1s ease;
+}
+
+/* RECOMMENDATIONS */
+
+.recommendation-list {
+  display: grid;
+  gap: 13px;
+  margin-top: 17px;
+}
+
+.recommendation {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #edf1ed;
+  border-radius: 14px;
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.recommendation:hover {
+  transform: translateX(4px);
+  border-color: #c3e9d1;
+  background: #f8fdf9;
+}
+
+.recommendation-icon {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--mint);
+  font-size: 19px;
+}
+
+.recommendation h4 {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.recommendation p {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.recommendation-impact {
+  display: inline-block;
+  margin-top: 5px;
+  color: #258454;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.result-disclaimer {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* FEATURE CARDS */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.feature-card {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  background: white;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.feature-card-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: var(--mint);
+  font-size: 22px;
+}
+
+.feature-card h3 {
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 43px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.footer strong {
+  color: var(--forest);
+}
+
+/* CHAT WIDGET */
+
+.chat-launcher {
+  position: fixed;
+  right: 25px;
+  bottom: 24px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 55px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--forest);
+  color: white;
+  box-shadow: 0 12px 32px rgba(11,37,29,.25);
+  font-size: 12px;
+  font-weight: 800;
+  transition: transform .25s ease, background .25s ease;
+}
+
+.chat-launcher:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: #205b43;
+}
+
+.chat-launcher-icon {
+  font-size: 21px;
+}
+
+.chat-window {
+  position: fixed;
+  right: 25px;
+  bottom: 92px;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  width: min(365px, calc(100vw - 30px));
+  height: min(480px, calc(100dvh - 125px));
+  overflow: hidden;
+  border: 1px solid #dce9df;
+  border-radius: 23px;
+  background: white;
+  box-shadow: 0 24px 70px rgba(13,49,33,.2);
+  transform-origin: bottom right;
+}
+
+.chat-window[hidden] {
+  display: none !important;
+}
+
+.chat-window.chat-opening {
+  animation: popIn .24s ease both;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px;
+  background: var(--forest);
+  color: white;
+}
+
+.chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: #d5f8e4;
+  color: var(--forest);
+  font-size: 20px;
+}
+
+.chat-header h3 {
+  font-size: 14px;
+}
+
+.chat-header p {
+  color: #a8d7bc;
+  font-size: 10px;
+}
+
+.chat-close {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  border: 1px solid rgba(255,255,255,.17);
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  font-size: 19px;
+}
+
+.chat-messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding: 17px;
+  background: #fbfdfb;
+}
+
+.chat-message {
+  max-width: 87%;
+  padding: 11px 13px;
+  border-radius: 14px;
+  font-size: 11px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  animation: popIn .2s ease both;
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  border: 1px solid #e7eee8;
+  border-bottom-left-radius: 4px;
+  background: white;
+  color: #42574b;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  background: var(--forest);
+  color: white;
+}
+
+.chat-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 14px 0;
+  background: #fbfdfb;
+}
+
+.chat-quick-actions button {
+  padding: 7px 9px;
+  border: 1px solid #dcebe0;
+  border-radius: 20px;
+  background: white;
+  color: #356849;
+  font-size: 10px;
+  transition: background .2s ease;
+}
+
+.chat-quick-actions button:hover {
+  background: var(--green-light);
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  background: white;
+}
+
+.chat-form input {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  font-size: 11px;
+}
+
+.chat-form input:focus {
+  border-color: var(--green);
+}
+
+.chat-send {
+  width: 43px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--green);
+  color: var(--forest-dark);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* ANIMATIONS */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatHouse {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-9px) rotate(2deg); }
+}
+
+/* TABLET */
+
+@media (max-width: 1150px) {
+  .sidebar {
+    width: 220px;
+    padding-inline: 14px;
+  }
+
+  .main-content {
+    width: calc(100% - 220px);
+    margin-left: 220px;
+    padding-inline: 25px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1.4fr) minmax(150px, .6fr);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+  .sidebar {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .app-shell {
+    display: block;
+  }
+
+  .brand {
+    padding: 0 3px 14px;
+  }
+
+  .brand-icon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .brand-name {
+    font-size: 19px;
+  }
+
+  .sidebar-label,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+  }
+
+  .nav-link {
+    min-height: 39px;
+    flex-shrink: 0;
+    padding: 8px 11px;
+    font-size: 11px;
+  }
+
+  .nav-icon {
+    width: auto;
+    font-size: 15px;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 20px 16px 35px;
+  }
+
+  .topbar {
+    margin-bottom: 19px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 26px 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(29px, 8vw, 39px);
+  }
+
+  .hero-illustration {
+    display: none;
+  }
+
+  .section {
+    margin-top: 28px;
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .feature-card-icon {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .chat-launcher {
+    right: 15px;
+    bottom: 15px;
+    min-height: 49px;
+    padding: 0 15px;
+  }
+
+  .chat-window {
+    right: 15px;
+    bottom: 75px;
+  }
+}
+
+@media (max-width: 430px) {
+  .status-pill {
+    padding: 8px 9px;
+    font-size: 9px;
+  }
+
+  .topbar-right {
+    gap: 7px;
+  }
+
+  .metrics-grid {
+    gap: 10px;
+  }
+
+  .metric-card {
+    padding: 14px;
+  }
+
+  .metric-value {
+    font-size: 22px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .results-banner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .score-ring {
+    width: 79px;
+    height: 79px;
+  }
+
+  .score-ring-inner {
+    width: 63px;
+    height: 63px;
+  }
+
+  .score-number {
+    font-size: 22px;
+  }
+
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Eco-Aera home">
+      <span class="brand-icon">⌂</span>
+      <span>
+        <span class="brand-name">eco-aera</span>
+        <span class="brand-subtitle" style="display:block">Green intelligence</span>
+      </span>
+    </a>
+
+    <div class="sidebar-label">Workspace</div>
+    <nav aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a class="nav-link active" href="#overview"><span class="nav-icon">▦</span> Overview</a></li>
+        <li><a class="nav-link" href="#analyzer"><span class="nav-icon">⌂</span> Home analyzer</a></li>
+        <li><a class="nav-link" href="#results"><span class="nav-icon">◷</span> Energy insights</a></li>
+        <li><a class="nav-link" href="#recommendations"><span class="nav-icon">✳</span> Recommendations</a></li>
+        <li><a class="nav-link" href="#learn"><span class="nav-icon">◎</span> Learn & improve</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-label">Your green journey</div>
+      <div class="sidebar-tip">
+        <div class="sidebar-tip-icon">🌱</div>
+        <h3>Every home can improve.</h3>
+        <p>Small, practical changes can help reduce energy use and improve comfort.</p>
+        <button class="tip-button" onclick="document.getElementById('analyzer').scrollIntoView({behavior:'smooth'})">
+          Start assessment ↗
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <header class="topbar">
+      <div class="breadcrumb">Workspace / <strong>Overview</strong></div>
+      <div class="topbar-right">
+        <div class="status-pill"><span class="status-dot"></span> Analyzer ready</div>
+        <div class="avatar" aria-label="User profile">EA</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="overview">
+      <div>
+        <div class="eyebrow">✦ Smarter homes, greener tomorrow</div>
+        <h1>Make your home <span>work with nature.</span></h1>
+        <p>
+          Discover how your home uses energy, identify opportunities
+          for improvement, and explore practical steps toward sustainable living.
+        </p>
+        <div class="hero-actions">
+          <a href="#analyzer" class="btn btn-primary">Analyze my home <span>↗</span></a>
+          <a href="#learn" class="btn btn-glass">Explore green living</a>
+        </div>
+      </div>
+
+      <div class="hero-illustration" aria-hidden="true">
+        <div class="house-art">🏡</div>
+        <div class="floating-label label-top">☀️ Natural energy</div>
+        <div class="floating-label label-bottom">🌿 Sustainable living</div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW METRICS -->
+    <section class="section" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="overview-title">Your sustainability workspace</h2>
+          <p>Begin with your home details to generate personalized estimates.</p>
+        </div>
+        <span class="section-tag">LIVE AFTER ANALYSIS</span>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-icon">⚡</div>
+          <span class="metric-label">Monthly electricity bill</span>
+          <strong class="metric-value" id="overviewBill">—</strong>
+          <span class="metric-note">Enter your monthly bill below</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-icon">🏠</div>
+          <span class="metric-label">Property floor area</span>
+          <strong class="metric-value" id="overviewArea">—</strong>
+          <span class="metric-note">Your home's approximate area</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-icon">🌱</div>
+          <span class="metric-label">Green home score</span>
+          <strong class="metric-value" id="overviewScore">—</strong>
+          <span class="metric-note">Calculated from your selections</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-icon">💡</div>
+          <span class="metric-label">Estimated monthly savings</span>
+          <strong class="metric-value" id="overviewSavings">—</strong>
+          <span class="metric-note">Illustrative improvement scenario</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOME ANALYZER -->
+    <section class="section" id="analyzer">
+      <div class="section-heading">
+        <div>
+          <h2>Green home analyzer</h2>
+          <p>Tell us about your property and its energy-saving features.</p>
+        </div>
+        <span class="section-tag">STEP 01 · HOME PROFILE</span>
+      </div>
+
+      <form class="panel" id="homeForm">
+        <div class="form-block">
+          <div class="form-block-title">
+            <div class="form-block-icon">🏡</div>
+            <div>
+              <h3>Property profile</h3>
+              <p>Basic details about your home and energy usage.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="homeType">Property type</label>
+              <select> id="homeType" required>
+                <option value="apartment">Apartment / Flat</option>
+                <option value="independent">Independent house</option>
+                <option value="villa">Villa / Large home</option>
+                <option value="rowhouse">Row house</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="electricityBill">Monthly electricity bill (₹)</label>
+              <input id="electricityBill" type="number" min="0" max="10000000" step="1" placeholder="e.g. 2500" required>
+              <span class="field-help">Enter the approximate monthly amount.</span>
+              
+<div class="form-group">
+    <label for="monthlyKwh">Monthly electricity usage (kWh)</label>
+    <input
+        id="monthlyKwh"
+        type="number"
+        min="1"
+        max="1000000"
+        step="1"
+        placeholder="e.g. 300"
+        required
+    >
+    <span class="field-help">
+        Enter the monthly electricity consumption shown on your electricity bill.
+    </span>
+</div>
+
+            </div>
+
+            <div class="form-field">
+              <label for="homeArea">Floor area (sq. ft.)</label>
+              <input id="homeArea" type="number" min="50" max="1000000" step="1" placeholder="e.g. 1200" required>
+            </div>
+
+            <div class="form-field">
+              <label for="homeAge">Building age (years)</label>
+              <input id="homeAge" type="number" min="0" max="300" step="1" placeholder="e.g. 8" required>
+            </div>
+
+            <div class="form-field">
+              <label for="occupants">Number of occupants</label>
+              <input id="occupants" type="number" min="1" max="1000" step="1" placeholder="e.g. 4" required>
+            </div>
+
+            <div class="form-field">
+              <label for="climate">Typical climate</label>
+              <select id="climate" required>
+                <option value="hot">Hot / Warm</option>
+                <option value="mixed">Mixed seasons</option>
+                <option value="cool">Cool / Cold</option>
+                <option value="humid">Hot and humid</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-block">
+          <div class="form-block-title">
+            <div class="form-block-icon">☀️</div>
+            <div>
+              <h3>Building efficiency</h3>
+              <p>Select the conditions that best describe your home.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="daylight">Natural daylight</label>
+              <select id="daylight" required>
+                <option value="poor">Poor — lights needed most of the day</option>
+                <option value="average" selected>Average — some daylight</option>
+                <option value="good">Good — bright rooms</option>
+                <option value="excellent">Excellent — abundant daylight</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="ventilation">Natural ventilation</label>
+              <select id="ventilation" required>
+                <option value="poor">Poor airflow</option>
+                <option value="average" selected>Average airflow</option>
+                <option value="good">Good cross-ventilation</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="roofInsulation">Roof insulation</label>
+              <select id="roofInsulation" required>
+                <option value="none">None / Unknown</option>
+                <option value="basic">Basic insulation</option>
+                <option value="good">Good insulation</option>
+              </select>
+            </div>
+<div class="form-field">
+    <label for="windowQuality">Window quality</label>
+    <select id="windowQuality" required>
+        <option value="poor">Poor — single glazing or air leaks</option>
+        <option value="average" selected>Average — standard windows</option>
+        <option value="good">Good — insulated or double-glazed</option>
+    </select>
+</div>
+
+
+            <div class="form-field">
+              <label for="wallInsulation">Wall insulation</label>
+              <select id="wallInsulation" required>
+                <option value="none">None / Unknown</option>
+                <option value="basic">Basic insulation</option>
+                <option value="good">Good insulation</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="appliances">Appliance efficiency</label>
+              <select id="appliances" required>
+                <option value="low">Mostly older appliances</option>
+                <option value="mixed" selected>Mix of old and efficient</option>
+                <option value="high">Mostly efficient appliances</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="lighting">Lighting type</label>
+              <select id="lighting" required>
+                <option value="incandescent">Incandescent / Older bulbs</option>
+                <option value="cfl">CFL / Mixed lighting</option>
+                <option value="led" selected>Mostly LED lighting</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="solar">Solar energy</label>
+              <select id="solar" required>
+                <option value="none">No solar installed</option>
+                <option value="planned">Planned / Considering solar</option>
+                <option value="partial">Solar partially installed</option>
+                <option value="installed">Solar installed</option>
+                
+              </select>
+            </div>
+           
+
+            <!-- Smart energy management -->
+            <div class="form-field">
+              <label for="smartManagement">Smart energy management</label>
+              <select id="smartManagement" required>
+                <option value="none">No smart controls</option>
+                <option value="basic" selected>Basic energy-saving controls</option>
+                <option value="advanced">Advanced smart energy controls</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              
+
+            <div class="form-field">
+              <label for="cooling">Cooling equipment</label>
+              <select id="cooling" required>
+                <option value="fans">Mainly fans</option>
+                <option value="mixed" selected>Fans and air conditioning</option>
+                <option value="ac">Air conditioning used frequently</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="waterHeating">Water heating</label>
+              <select id="waterHeating" required>
+                <option value="electric">Electric water heater</option>
+                <option value="solar">Solar water heating</option>
+                <option value="gas">Gas water heating</option>
+                <option value="other">Other / Unknown</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-block">
+          <div class="form-block-title">
+            <div class="form-block-icon">🎯</div>
+            <div>
+              <h3>Your improvement priorities</h3>
+              <p>Choose the main goal for your green home journey.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="priority">Primary goal</label>
+              <select id="priority">
+                <option value="bill">Reduce electricity costs</option>
+                <option value="comfort">Improve indoor comfort</option>
+                <option value="carbon">Reduce environmental impact</option>
+                <option value="balanced" selected>Balanced improvement</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="dayUsage">Daytime occupancy</label>
+              <select id="dayUsage">
+                <option value="low">Usually away during daytime</option>
+                <option value="medium" selected>Sometimes occupied</option>
+                <option value="high">Usually occupied</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="budget">Improvement budget</label>
+              <select id="budget">
+                <option value="low">Low-cost changes</option>
+                <option value="medium" selected>Moderate budget</option>
+                <option value="high">Major improvements possible</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <p class="form-note">
+            Your results are estimates based on the information you enter.
+            Actual energy performance depends on local conditions and usage.
+          </p>
+          <button type="submit" class="btn btn-primary" id="analyzeButton">
+            Analyze my home <span>↗</span>
+          </button>
+        </div>
+
+        <div class="form-error" id="formError" role="alert"></div>
+      </form>
+    </section>
+
+    <!-- RESULTS, HIDDEN UNTIL ANALYSIS -->
+    <section class="section results-section" id="results" hidden>
+      <div class="section-heading">
+        <div>
+          <h2>Your home energy insights</h2>
+          <p id="resultSubtitle">Your assessment results are ready.</p>
+        </div>
+        <button class="btn btn-primary" id="printReport" type="button">Print report ↗</button>
+      </div>
+
+      <div class="results-banner">
+        <div class="score-wrap">
+          <div class="score-ring" id="scoreRing">
+            <div class="score-ring-inner">
+              <strong class="score-number" id="scoreNumber">0</strong>
+              <span class="score-out-of">out of 100</span>
+            </div>
+          </div>
+          <div class="score-text">
+            <h3 id="scoreHeading">Your green home score</h3>
+            <p id="scoreDescription">Your score will appear after analysis.</p>
+            <span class="result-status" id="scoreStatus">✦ Assessment complete</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <article class="result-card">
+          <h3>Estimated monthly energy cost</h3>
+          <p>Your entered bill compared with a possible improvement scenario.</p>
+          <div class="chart-wrap">
+            <canvas id="costChart" role="img" aria-label="Chart comparing current and illustrative improved monthly energy costs"></canvas>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot orange"></span> Current bill</span>
+            <span class="legend-item"><span class="legend-dot"></span> Illustrative improved bill</span>
+          </div>
+        </article>
+
+        <article class="result-card">
+          <h3>Efficiency breakdown</h3>
+          <p>Estimated ratings from your selected building conditions.</p>
+          <div class="chart-wrap">
+            <canvas id="efficiencyChart" role="img" aria-label="Chart showing daylight, ventilation, insulation, appliances, and solar ratings"></canvas>
+          </div>
+        </article>
+
+        <article class="result-card">
+          <h3>Your potential improvement areas</h3>
+          <p>Relative assessment of the selected features, not a measured energy audit.</p>
+          <div class="energy-summary" id="efficiencyBars"></div>
+        </article>
+
+        <article class="result-card" id="recommendations">
+          <h3>Personalized recommendations</h3>
+          <p>Start with practical actions suited to your selected priorities.</p>
+          <div class="recommendation-list" id="recommendationList"></div>
+        </article>
+      </div>
+
+      <p class="result-disclaimer">
+        Important: These results use a simplified educational scoring model.
+        Savings are illustrative, not guaranteed. The model does not measure actual
+        electricity consumption, utility tariffs, carbon emissions, or building performance.
+        For investment decisions, use local energy rates and a qualified energy assessment.
+      </p>
+    </section>
+
+    <!-- LEARNING SECTION -->
+    <section class="section" id="learn">
+      <div class="section-heading">
+        <div>
+          <h2>Build a greener home</h2>
+          <p>Explore the areas that can make your property more energy-conscious.</p>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-card-icon">☀️</div>
+          <div>
+            <h3>Make use of daylight</h3>
+            <p>Use natural light where practical, choose efficient bulbs, and turn lights off in unused rooms.</p>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card-icon">🍃</div>
+          <div>
+            <h3>Improve airflow</h3>
+            <p>Where outdoor conditions allow, use cross-ventilation to improve comfort and reduce cooling needs.</p>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-card-icon">🔋</div>
+          <div>
+            <h3>Use energy wisely</h3>
+            <p>Choose efficient appliances, check their ratings, and compare solar options against your actual energy use.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="currentYear"></span> <strong>Eco-Aera</strong>. Green living, intelligently designed.</p>
+      <p>Designed for a more sustainable future 🌱</p>
+    </footer>
+
+  </main>
+</div>
+
+<!-- FLOATING CHAT BUTTON -->
+<button class="chat-launcher" id="chatLauncher" type="button"
+        aria-label="Open Eco-Aera assistant" aria-expanded="false" aria-controls="chatWindow">
+  <span class="chat-launcher-icon">✦</span>
+  <span>Ask Eco-Aera</span>
+</button>
+
+<!-- CHATBOX -->
+<section class="chat-window" id="chatWindow" aria-label="Eco-Aera chat assistant" hidden>
+  <header class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">🌿</div>
+      <div>
+        <h3>Eco-Aera Assistant</h3>
+        <p>Green home guide · Basic help</p>
+      </div>
+    </div>
+    <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button>
+  </header>
+
+  <div class="chat-messages" id="chatMessages" aria-live="polite" aria-relevant="additions text">
+    <div class="chat-message bot">
+      Hi! 🌱 I'm the Eco-Aera assistant. Ask me about your home assessment, energy efficiency, solar power, or the results.
+    </div>
+  </div>
+
+  <div class="chat-quick-actions">
+    <button type="button" data-question="How does the green home score work?">Green score</button>
+    <button type="button" data-question="How can I reduce my electricity bill?">Save energy</button>
+    <button type="button" data-question="What does solar energy do?">Solar energy</button>
+  </div>
+
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" type="text" maxlength="500" placeholder="Ask a green home question..." aria-label="Your question" required>
+    <button class="chat-send" type="submit" aria-label="Send message">↑</button>
+  </form>
+</section>
+
+<script>
+"use strict";
+
+/* =====================================================
+   ECO-AERA: GREEN HOME ANALYZER
+   Standalone frontend demonstration.
+   No external backend or database is connected.
+===================================================== */
+
+const $ = (id) => document.getElementById(id);
+
+const form = $("homeForm");
+const resultsSection = $("results");
+const errorBox = $("formError");
+
+$("currentYear").textContent = new Date().getFullYear();
+
+/* ---------- FORM UTILITIES ---------- */
+function selectedValue(id) {
+  const element = $(id);
+
+  if (!element) {
+    console.error("Eco-Aera: Missing HTML element with ID:", id);
+    throw new Error("Missing HTML element: " + id);
+  }
+
+  return element.value;
+}
+
+function numberValue(id) {
+  return Number($(id).value);
+}
+
+function money(value) {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0
+  }).format(Math.max(0, value));
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function showError(message) {
+  errorBox.textContent = message;
+  errorBox.classList.add("visible");
+}
+
+function clearError() {
+  errorBox.textContent = "";
+  errorBox.classList.remove("visible");
+}
+
+/* ---------- MODEL SETTINGS ---------- */
+
+/*
+  This is a simplified illustrative scoring model.
+  It is not a certified energy-performance calculation.
+*/
+
+const ratingValues = {
+  daylight: {
+    poor: 25,
+    average: 55,
+    good: 80,
+    excellent: 95
+  },
+  ventilation: {
+    poor: 25,
+    average: 55,
+    good: 85
+  },
+  insulation: {
+    none: 20,
+    basic: 55,
+    good: 90
+  },
+  appliances: {
+    low: 25,
+    mixed: 55,
+    high: 90
+  },
+  lighting: {
+    incandescent: 15,
+    cfl: 55,
+    led: 95
+  },
+  solar: {
+    none: 0,
+    planned: 10,
+    partial: 55,
+    installed: 90
+  }
+};
+
+function getRatings() {
+  return {
+    daylight: ratingValues.daylight[selectedValue("daylight")],
+    ventilation: ratingValues.ventilation[selectedValue("ventilation")],
+    roof: ratingValues.insulation[selectedValue("roofInsulation")],
+    walls: ratingValues.insulation[selectedValue("wallInsulation")],
+    appliances: ratingValues.appliances[selectedValue("appliances")],
+    lighting: ratingValues.lighting[selectedValue("lighting")],
+    solar: ratingValues.solar[selectedValue("solar")]
+  };
+}
+
+function calculateScore(ratings) {
+  const values = [
+    ratings.daylight,
+    ratings.ventilation,
+    ratings.roof,
+    ratings.walls,
+    ratings.appliances,
+    ratings.lighting,
+    ratings.solar
+  ];
+
+  return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
+}
+
+function scoreLabel(score) {
+  if (score >= 80) {
+    return {
+      heading: "Strong green foundations",
+      description: "Your selections indicate several energy-conscious features. Look for remaining opportunities to improve.",
+      status: "✦ Strong estimated rating"
+    };
+  }
+
+  if (score >= 60) {
+    return {
+      heading: "A promising green home",
+      description: "Your home has some helpful features. A few targeted changes may improve its estimated rating.",
+      status: "✦ Good progress possible"
+    };
+  }
+
+  if (score >= 40) {
+    return {
+      heading: "Room for improvement",
+      description: "Your selections suggest several areas worth reviewing, starting with simple efficiency upgrades.",
+      status: "✦ Improvement opportunities"
+    };
+  }
+
+  return {
+    heading: "Start your green journey",
+    description: "Consider beginning with efficient lighting, sensible energy use, and practical improvements to comfort.",
+    status: "✦ A starting point"
+  };
+}
+
+/* ---------- SAVINGS ESTIMATE ---------- */
+
+function estimateSavings(ratings, bill) {
+  /*
+    These percentages are illustrative assumptions only.
+    They are not calibrated to measured household energy data.
+  */
+
+  let improvementOpportunity = 0;
+
+  improvementOpportunity += (100 - ratings.daylight) * 0.00035;
+  improvementOpportunity += (100 - ratings.ventilation) * 0.00025;
+  improvementOpportunity += (100 - ratings.roof) * 0.00040;
+  improvementOpportunity += (100 - ratings.walls) * 0.00025;
+  improvementOpportunity += (100 - ratings.appliances) * 0.00055;
+  improvementOpportunity += (100 - ratings.lighting) * 0.00045;
+  improvementOpportunity += (100 - ratings.solar) * 0.00030;
+
+  const cooling = selectedValue("cooling");
+
+  if (cooling === "ac") {
+    improvementOpportunity += 0.025;
+  } else if (cooling === "mixed") {
+    improvementOpportunity += 0.012;
+  }
+
+  const waterHeating = selectedValue("waterHeating");
+
+  if (waterHeating === "electric") {
+    improvementOpportunity += 0.015;
+  }
+
+  const climate = selectedValue("climate");
+
+  if (climate === "hot" || climate === "humid") {
+    improvementOpportunity += 0.015;
+  }
+
+  const priority = selectedValue("priority");
+
+  if (priority === "bill") {
+    improvementOpportunity += 0.015;
+  }
+
+  const savingsRate = clamp(improvementOpportunity, 0.05, 0.30);
+
+  return {
+    rate: savingsRate,
+    amount: Math.round(bill * savingsRate),
+    improvedBill: Math.round(bill * (1 - savingsRate))
+  };
+}
+
+/* ---------- EFFICIENCY BARS ---------- */
+
+function renderEfficiencyBars(ratings) {
+  const entries = [
+    ["Natural daylight", ratings.daylight],
+    ["Ventilation", ratings.ventilation],
+    ["Roof insulation", ratings.roof],
+    ["Wall insulation", ratings.walls],
+    ["Appliance efficiency", ratings.appliances],
+    ["Lighting efficiency", ratings.lighting],
+    ["Solar integration", ratings.solar]
+  ];
+
+  $("efficiencyBars").innerHTML = entries.map(([name, value]) => `
+    <div class="energy-row">
+      <div class="energy-row-top">
+        <span>${name}</span>
+        <span>${value}/100</span>
+      </div>
+      <div class="progress-track" role="progressbar"
+           aria-label="${name}" aria-valuemin="0"
+           aria-valuemax="100" aria-valuenow="${value}">
+        <div class="progress-fill" data-width="${value}%"></div>
+      </div>
+    </div>
+  `).join("");
+
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".progress-fill").forEach((bar) => {
+      bar.style.width = bar.dataset.width;
+    });
+  });
+}
+
+/* ---------- CANVAS CHARTS ---------- */
+
+function prepareCanvas(canvas) {
+  const rect = canvas.getBoundingClientRect();
+  const width = Math.max(250, rect.width);
+  const height = Math.max(180, rect.height);
+  const dpr = Math.max(1, window.devicePixelRatio || 1);
+
+  canvas.width = Math.round(width * dpr);
+  canvas.height = Math.round(height * dpr);
+
+  const context = canvas.getContext("2d");
+  context.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  return { context, width, height };
+}
+
+function drawCostChart(currentBill, improvedBill) {
+  const canvas = $("costChart");
+  const { context: ctx, width, height } = prepareCanvas(canvas);
+
+  ctx.clearRect(0, 0, width, height);
+
+  const left = 45;
+  const right = width - 14;
+  const top = 15;
+  const bottom = height - 42;
+  const chartHeight = bottom - top;
+  const maxValue = Math.max(currentBill, improvedBill, 100) * 1.15;
+
+  ctx.font = '10px "DM Sans", sans-serif';
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+
+  for (let i = 0; i <= 4; i++) {
+    const y = bottom - (chartHeight * i / 4);
+    const value = maxValue * i / 4;
+
+    ctx.strokeStyle = "#edf2ed";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(right, y);
+    ctx.stroke();
+
+    ctx.fillStyle = "#8a978e";
+    ctx.fillText(
+      Math.round(value).toLocaleString("en-IN"),
+      left - 7,
+      y
+    );
+  }
+
+  const plotWidth = right - left;
+  const groupCenters = [
+    left + plotWidth * .31,
+    left + plotWidth * .72
+  ];
+  const barWidth = Math.min(45, plotWidth * .16);
+  const values = [currentBill, improvedBill];
+  const colors = ["#f4a261", "#43c68b"];
+
+  values.forEach((value, index) => {
+    const barHeight = (value / maxValue) * chartHeight;
+    const x = groupCenters[index] - barWidth / 2;
+    const y = bottom - barHeight;
+
+    ctx.fillStyle = colors[index];
+    roundedRect(ctx, x, y, barWidth, Math.max(0, barHeight), 7);
+    ctx.fill();
+
+    ctx.fillStyle = "#30483b";
+    ctx.font = 'bold 10px "DM Sans", sans-serif';
+    ctx.textAlign = "center";
+    ctx.fillText(money(value), groupCenters[index], Math.max(top + 7, y - 10));
+
+    ctx.fillStyle = "#7b8981";
+    ctx.font = '10px "DM Sans", sans-serif';
+    ctx.fillText(
+      index === 0 ? "Current" : "Illustrative",
+      groupCenters[index],
+      bottom + 22
+    );
+  });
+}
+
+function roundedRect(ctx, x, y, width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + width - r, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+  ctx.lineTo(x + width, y + height - r);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+  ctx.lineTo(x + r, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function drawEfficiencyChart(ratings) {
+  const canvas = $("efficiencyChart");
+  const { context: ctx, width, height } = prepareCanvas(canvas);
+
+  ctx.clearRect(0, 0, width, height);
+
+  const entries = [
+    ["Daylight", ratings.daylight],
+    ["Airflow", ratings.ventilation],
+    ["Roof", ratings.roof],
+    ["Walls", ratings.walls],
+    ["Appliances", ratings.appliances],
+    ["Lighting", ratings.lighting],
+    ["Solar", ratings.solar]
+  ];
+
+  const left = 82;
+  const right = width - 34;
+  const top = 13;
+  const rowHeight = (height - 25) / entries.length;
+  const barWidth = Math.max(50, right - left);
+
+  ctx.font = '10px "DM Sans", sans-serif';
+  ctx.textBaseline = "middle";
+
+  entries.forEach(([label, value], index) => {
+    const y = top + index * rowHeight + rowHeight / 2;
+
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#6e7d73";
+    ctx.fillText(label, left - 9, y);
+
+    ctx.fillStyle = "#edf2ed";
+    roundedRect(ctx, left, y - 5, barWidth, 10, 5);
+    ctx.fill();
+
+    const filledWidth = barWidth * value / 100;
+
+    if (filledWidth > 0) {
+      ctx.fillStyle = value >= 60 ? "#43c68b" : "#f4a261";
+      roundedRect(ctx, left, y - 5, filledWidth, 10, 5);
+      ctx.fill();
+    }
+
+    ctx.textAlign = "left";
+    ctx.fillStyle = "#52675a";
+    ctx.fillText(String(value), Math.min(right + 5, width - 23), y);
+  });
+}
+
+/* ---------- RECOMMENDATIONS ---------- */
+
+function buildRecommendations(ratings) {
+  const recommendations = [];
+
+  if (ratings.lighting < 85) {
+    recommendations.push({
+      icon: "💡",
+      title: "Upgrade to efficient LED lighting",
+      description: "Replace remaining inefficient bulbs where practical and switch lights off when not needed.",
+      impact: "Low-cost action"
+    });
+  }
+
+  if (ratings.daylight < 70) {
+    recommendations.push({
+      icon: "☀️",
+      title: "Make better use of natural light",
+      description: "Keep useful window areas unobstructed and arrange workspaces to take advantage of daylight.",
+      impact: "Comfort and lighting opportunity"
+    });
+  }
+
+  if (ratings.ventilation < 65) {
+    recommendations.push({
+      icon: "🍃",
+      title: "Review natural ventilation",
+      description: "Where outdoor air is suitable, consider cross-ventilation and unobstructed airflow paths.",
+      impact: "Comfort opportunity"
+    });
+  }
+
+  if (ratings.roof < 70 || ratings.walls < 70) {
+    recommendations.push({
+      icon: "🏠",
+      title: "Review roof and wall heat control",
+      description: "Consider shading, reflective roof treatments, or suitable insulation after checking local building conditions.",
+      impact: "Potential long-term improvement"
+    });
+  }
+
+  if (ratings.appliances < 70) {
+    recommendations.push({
+      icon: "🔌",
+      title: "Check appliance efficiency",
+      description: "Compare energy labels when replacing equipment and avoid running appliances unnecessarily.",
+      impact: "Usage and replacement opportunity"
+    });
+  }
+
+  if (ratings.solar < 50) {
+    recommendations.push({
+      icon: "🔋",
+      title: "Explore whether solar is suitable",
+      description: "Check roof access, shade, installation costs, local incentives, and your actual electricity usage.",
+      impact: "Requires local cost assessment"
+    });
+  }
+
+  if (selectedValue("cooling") !== "fans") {
+    recommendations.push({
+      icon: "🌡️",
+      title: "Review cooling habits",
+      description: "Use sensible thermostat settings, clean filters as recommended, and shade rooms during hot periods.",
+      impact: "Everyday efficiency"
+    });
+  }
+
+  if (recommendations.length < 3) {
+    recommendations.push({
+      icon: "📊",
+      title: "Track actual electricity use",
+      description: "Compare utility bills over several months and note changes in weather, occupancy, and appliance use.",
+      impact: "Helps validate improvements"
+    });
+  }
+
+  const budget = selectedValue("budget");
+
+  if (budget === "low") {
+    recommendations.sort((a, b) => {
+      const aLow = /low-cost|everyday|usage/i.test(a.impact) ? 0 : 1;
+      const bLow = /low-cost|everyday|usage/i.test(b.impact) ? 0 : 1;
+      return aLow - bLow;
+    });
+  }
+
+  return recommendations.slice(0, 5);
+}
+
+function renderRecommendations(ratings) {
+  const recommendations = buildRecommendations(ratings);
+
+  $("recommendationList").innerHTML = recommendations.map((item) => `
+    <article class="recommendation">
+      <div class="recommendation-icon" aria-hidden="true">${item.icon}</div>
+      <div>
+        <h4>${item.title}</h4>
+        <p>${item.description}</p>
+        <span class="recommendation-impact">${item.impact}</span>
+      </div>
+    </article>
+  `).join("");
+}
+
+/* ---------- RUN ANALYSIS ---------- */
+
+function validateForm() {
+  const bill = numberValue("electricityBill");
+  const area = numberValue("homeArea");
+  const age = numberValue("homeAge");
+  const occupants = numberValue("occupants");
+
+  if (!Number.isFinite(bill) || bill < 0 || bill > 10000000) {
+    return "Enter a valid monthly electricity bill.";
+  }
+
+  if (!Number.isFinite(area) || area < 50 || area > 1000000) {
+    return "Enter a floor area between 50 and 1,000,000 square feet.";
+  }
+
+  if (!Number.isFinite(age) || age < 0 || age > 300) {
+    return "Enter a valid building age.";
+  }
+
+  if (!Number.isFinite(occupants) || occupants < 1 || occupants > 1000) {
+    return "Enter a valid number of occupants.";
+  }
+
+  return "";
+}
+
+function runAnalysis() {
+  const bill = numberValue("electricityBill");
+  const area = numberValue("homeArea");
+  const ratings = getRatings();
+  const score = calculateScore(ratings);
+  const savings = estimateSavings(ratings, bill);
+  const label = scoreLabel(score);
+
+  $("overviewBill").textContent = money(bill);
+  $("overviewArea").textContent = area.toLocaleString("en-IN") + " sq ft";
+  $("overviewScore").textContent = score + "/100";
+  $("overviewSavings").textContent = money(savings.amount);
+
+  $("scoreNumber").textContent = score;
+  $("scoreHeading").textContent = label.heading;
+  $("scoreDescription").textContent = label.description;
+  $("scoreStatus").textContent = label.status;
+
+  $("scoreRing").style.background =
+    `conic-gradient(#43c68b ${score * 3.6}deg, #e2eee5 ${score * 3.6}deg)`;
+
+  $("resultSubtitle").textContent =
+    `${selectedValue("homeType")} · ${area.toLocaleString("en-IN")} sq ft · ${numberValue("occupants")} occupants`;
+
+  renderEfficiencyBars(ratings);
+  renderRecommendations(ratings);
+
+  /*
+    The bar chart is a scenario illustration.
+    It is not a prediction of guaranteed financial savings.
+  */
+  requestAnimationFrame(() => {
+    drawCostChart(bill, savings.improvedBill);
+    drawEfficiencyChart(ratings);
+  });
+
+  resultsSection.hidden = false;
+
+  resultsSection.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth",
+    block: "start"
+  });
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  clearError();
+
+  const error = validateForm();
+
+  if (error) {
+    showError(error);
+    return;
+  }
+
+  runAnalysis();
+});
+
+/* ---------- PRINT REPORT ---------- */
+
+$("printReport").addEventListener("click", () => {
+  window.print();
+});
+
+/* ---------- CHART RESIZING ---------- */
+
+let resizeFrame = null;
+
+window.addEventListener("resize", () => {
+  if (resultsSection.hidden) return;
+
+  cancelAnimationFrame(resizeFrame);
+
+  resizeFrame = requestAnimationFrame(() => {
+    const bill = numberValue("electricityBill");
+    const ratings = getRatings();
+    const savings = estimateSavings(ratings, bill);
+
+    drawCostChart(bill, savings.improvedBill);
+    drawEfficiencyChart(ratings);
+  });
+});
+
+/* ---------- SIDEBAR NAVIGATION ---------- */
+
+const navigationLinks = [...document.querySelectorAll(".nav-link")];
+
+navigationLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    navigationLinks.forEach((item) => item.classList.remove("active"));
+    link.classList.add("active");
+  });
+});
+
+/* ---------- CHATBOX CONTROLS ---------- */
+
+const chatLauncher = $("chatLauncher");
+const chatWindow = $("chatWindow");
+const chatClose = $("chatClose");
+const chatMessages = $("chatMessages");
+const chatForm = $("chatForm");
+const chatInput = $("chatInput");
+
+function openChat() {
+  chatWindow.hidden = false;
+  chatWindow.classList.remove("chat-opening");
+
+  requestAnimationFrame(() => {
+    chatWindow.classList.add("chat-opening");
+  });
+
+  chatLauncher.setAttribute("aria-expanded", "true");
+  chatInput.focus();
+}
+
+function closeChat() {
+  chatWindow.hidden = true;
+  chatLauncher.setAttribute("aria-expanded", "false");
+  chatLauncher.focus();
+}
+
+chatLauncher.addEventListener("click", () => {
+  if (chatWindow.hidden) {
+    openChat();
+  } else {
+    closeChat();
+  }
+});
+
+chatClose.addEventListener("click", closeChat);
+
+function addChatMessage(text, sender) {
+  const message = document.createElement("div");
+  message.className = `chat-message ${sender}`;
+  message.textContent = text;
+  chatMessages.appendChild(message);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function getChatReply(question) {
+  const q = question.toLowerCase();
+
+  if (q.includes("score") || q.includes("rating")) {
+    return "Your green home score is a simplified rating based on the daylight, ventilation, insulation, appliance, lighting, and solar choices you enter. It is an educational estimate, not a certified building assessment.";
+  }
+
+  if (q.includes("bill") || q.includes("electricity") || q.includes("save") || q.includes("cost")) {
+    return "Start by tracking your actual electricity use, using efficient lighting, checking appliance energy labels, and reviewing cooling habits. The savings figure on this page is illustrative, so compare real bills before and after changes.";
+  }
+
+  if (q.includes("solar")) {
+    return "Solar suitability depends on sunlight, roof space, shading, system cost, electricity use, and local rules. Compare installer quotations and estimated annual generation before making a decision.";
+  }
+
+  if (q.includes("insulation") || q.includes("roof") || q.includes("wall") || q.includes("heat")) {
+    return "Roof and wall heat control can affect indoor comfort. Depending on your climate and building, suitable shading, reflective surfaces, or insulation may help. Check moisture, fire safety, and local building requirements first.";
+  }
+
+  if (q.includes("ventilation") || q.includes("airflow") || q.includes("daylight") || q.includes("light")) {
+    return "Where outdoor conditions are suitable, make good use of daylight and cross-ventilation. Efficient lighting can also help reduce unnecessary electricity use.";
+  }
+
+  if (q.includes("appliance") || q.includes("equipment")) {
+    return "Compare energy labels when purchasing new appliances, use appropriate settings, maintain equipment, and avoid unnecessary standby use where practical.";
+  }
+
+  if (q.includes("analy") || q.includes("result") || q.includes("start") || q.includes("form")) {
+    return "Open Green Home Analyzer, enter your property details and building conditions, then select Analyze My Home. Your score, charts, and recommendations will appear below the form.";
+  }
+
+  if (q.includes("carbon") || q.includes("environment") || q.includes("green")) {
+    return "Efficient appliances, sensible energy use, suitable solar power, and reduced waste can support more sustainable living. Actual emissions depend on your energy sources and usage.";
+  }
+
+  if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
+    return "Hello! 🌿 Welcome to Eco-Aera. You can ask about your home score, energy-saving ideas, insulation, lighting, or solar power.";
+  }
+
+  return "I can help with the green home score, electricity-saving ideas, daylight, ventilation, insulation, appliances, and solar energy. Try asking about one of those topics. This demo assistant uses predefined answers and is not connected to a live AI service.";
+}
+
+chatForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const question = chatInput.value.trim();
+
+  if (!question) return;
+
+  addChatMessage(question, "user");
+  chatInput.value = "";
+
+  /*
+    Local demonstration response.
+    Connect a secure backend/API to use a real AI assistant.
+  */
+  const reply = getChatReply(question);
+
+  window.setTimeout(() => {
+    addChatMessage(reply, "bot");
+  }, 250);
+});
+
+document.querySelectorAll("[data-question]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const question = button.dataset.question;
+
+    addChatMessage(question, "user");
+    addChatMessage(getChatReply(question), "bot");
+  });
+});
+
+/* ---------- KEYBOARD SUPPORT ---------- */
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !chatWindow.hidden) {
+    closeChat();
+  }
+});
+
+/* ---------- INITIAL STATE ---------- */
+
+/*
+  Deliberately do not run the analysis on page load.
+  The results area stays hidden until the user submits the form.
+*/
+
+resultsSection.hidden = true;
+
+</script>
+</body>
+</html>
